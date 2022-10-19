@@ -41,7 +41,7 @@ CREATE TABLE
         PRIMARY KEY(service_id),
         mechanical_id INT NOT NULL,
         service_id INT NOT NULL,
-        status_service ENUM('PROGRESS', 'DONE'),
+        status_service ENUM('PROGRESS', 'DONE', 'CANCELED'),
         FOREIGN KEY (service_id) REFERENCES services (service_id) ON DELETE CASCADE,
         FOREIGN KEY (mechanical_id) REFERENCES mechanical (mechanical_id) ON DELETE CASCADE
     ) ENGINE = INNODB;
