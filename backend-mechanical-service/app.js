@@ -11,7 +11,7 @@ app.use('/products', routes.productsRoute);
 app.use('/sales', routes.salesRoute);
 
 app.get('/', (_request, response) => {
-  response.json({ message: 'Foi!' });
+  response.json({ message: 'Hello World!' });
 });
 
 module.exports = app;
