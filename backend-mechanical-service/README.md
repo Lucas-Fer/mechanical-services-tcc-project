@@ -9,7 +9,7 @@
     host: 'localhost', || alterar
     user: 'root', || alterar
     password: 'docker', || alterar
-    multipleStatements: true,
+    multipleStatements: true || MANTER,
    });
    ```
   - Alterar também o arquivo model/connection.js
