@@ -6,9 +6,9 @@ require('dotenv').config();
 const { cwd } = process;
 
 const connect = () => mysql.createPool({
-  host: process.env.MYSQL_HOST || 'localhost',
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'docker',
+  host: 'localhost',
+  user: 'root',
+  password: 'docker',
   multipleStatements: true,
 });
 
