@@ -8,6 +8,8 @@ TRUNCATE TABLE `mechanical`;
 
 TRUNCATE TABLE `services`;
 
+TRUNCATE TABLE `mechanical_service`;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO
@@ -39,7 +41,8 @@ INSERT INTO
 VALUES (
         'Glove',
         'mecanico@test.com',
-        TRUE
+        TRUE,
+        NULL
     ), (
         'Romário',
         'mecanico@test.com',
@@ -48,5 +51,31 @@ VALUES (
     );
 
 INSERT INTO
-    Mechanical_Services.services (user_id, mechanical_id)
-VALUES (1, 1, 5), (1, 2, 10), (2, 3, 15);
+    Mechanical_Services.services (
+        user_id,
+        description,
+        car_model,
+        car_brand,
+        car_year
+    )
+VALUES (
+        1,
+        'deu ruim aqui nessa bagaça',
+        'CG150 FAN ESDI',
+        'HONDA',
+        '2010'
+    ), (
+        2,
+        'bagaçado',
+        'Fiat Argo',
+        'FIAT',
+        '2023'
+    );
+
+INSERT INTO
+    Mechanical_Services.mechanical_service (
+        mechanical_id,
+        service_id,
+        status_service
+    )
+VALUES (2, 1, 'DONE'), (1, 2, 'PROGRESS');
