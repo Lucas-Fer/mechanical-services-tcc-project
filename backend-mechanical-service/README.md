@@ -3,7 +3,9 @@
   ## <strong>Variável de ambiente</strong>
 
    - Configurar o arquivo database/_utils.js, alterando as variáveis relacionadas ao seu banco nome do localhost, root, senha, etc..
-
+   
+   > Esse arquivo será utilizado para criar e popular o Banco com informações base.
+   
    ```
    const connection = mysql.createPool({
     host: 'localhost', || alterar
@@ -13,6 +15,8 @@
    });
    ```
   - Alterar também o arquivo model/connection.js
+
+  > Esse arquivo será utilizado para realizar as requisições nos endpoints.
 
   ```
   const connection = mysql.createPool({
