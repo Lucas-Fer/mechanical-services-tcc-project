@@ -33,7 +33,9 @@
     "express": "^4.17.1",
     "express-rescue": "^1.1.26",
     "joi": "^17.6.0",
-    "mysql2": "^2.3.0"
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.25.3",
+    "sequelize-cli": "^6.5.1"
   },
   "devDependencies": {
     "chai": "^4.3.4",
