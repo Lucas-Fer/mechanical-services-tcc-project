@@ -1,4 +1,4 @@
-enum statusCodes {
+enum StatusCodes {
   OK = 200,
   NOT_FOUND = 404,
   CREATED = 201,
@@ -7,4 +7,4 @@ enum statusCodes {
   NO_CONTENT = 204,
 };
 
-export default statusCodes;
+export default StatusCodes;
