@@ -1,11 +1,11 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('mechanical', {
+    await queryInterface.createTable('Mechanical', {
       mechanical_id: {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER(),
       },
       mechanical_name: {
         type: Sequelize.STRING(255),
@@ -33,6 +33,6 @@ module.exports = {
     });
   },
   dow: async (queryInterface, _Sequelize) => {
-    await queryInterface.dropTable('mechanical');
+    await queryInterface.dropTable('Mechanical');
   },
 };
