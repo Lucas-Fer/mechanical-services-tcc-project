@@ -24,7 +24,7 @@ MechanicalServices.init({
     allowNull: false,
   },
 }, {
-  modelName: 'Mechanical_Service',
+  modelName: 'mechanical_service',
   underscored: true,
   sequelize: db,
   timestamps: false,

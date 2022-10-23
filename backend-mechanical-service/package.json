@@ -1,5 +1,5 @@
 {
-  "name": "sd-0x-store-manager",
+  "name": "mechanical_services",
   "version": "1.0.0",
   "description": "Simple CRUD to sales and products",
   "main": "index.js",
@@ -11,6 +11,7 @@
     "build": "npx -y tsc",
     "start": "node index.js",
     "dev": "tsnd index.ts",
+    "dev2": "nodemon index.ts",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "migration": "node -e \"require('./database/_utils').runMigration()\"",
     "seed": "node -e \"require('./database/_utils').runSeed()\""

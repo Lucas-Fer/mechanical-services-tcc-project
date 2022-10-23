@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Mechanical_Service', {
+    await queryInterface.createTable('mechanical_service', {
       service_id: {
         type: Sequelize.INTEGER(),
         allowNull: false,
@@ -8,7 +8,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         foreignKey: true,
         references: {
-          model: 'Services',
+          model: 'services',
           key: 'service_id',
         },
       },
@@ -19,7 +19,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         foreignKey: true,
         references: {
-          model: 'Mechanical',
+          model: 'mechanical',
           key: 'mechanical_id',
         },
       },
@@ -29,6 +29,6 @@ module.exports = {
     });
   },
   dow: async (queryInterface, _Sequelize) => {
-    await queryInterface.dropTable('Mechanical_Service');
+    await queryInterface.dropTable('mechanical_service');
   },
 };

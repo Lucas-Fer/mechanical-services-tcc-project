@@ -39,7 +39,7 @@ Services.init({
     allowNull: true,
   },
 }, {
-  modelName: 'Services',
+  modelName: 'services',
   underscored: true,
   sequelize: db,
   timestamps: false,

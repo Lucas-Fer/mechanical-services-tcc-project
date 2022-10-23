@@ -43,7 +43,7 @@ Mechanical.init({
     allowNull: true,
   },
 }, {
-  modelName: 'Mechanical',
+  modelName: 'mechanical',
   underscored: true,
   sequelize: db,
   timestamps: false,
