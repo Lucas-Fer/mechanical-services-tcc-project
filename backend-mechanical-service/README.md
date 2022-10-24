@@ -63,7 +63,7 @@
 
 - [x] Cadastrar um novo usuário.
 - [x] Logar o usuário cadastrado.
-- [ ] Editar o usuário cadastrado.
+- [x] Editar o usuário cadastrado.
 - [ ] Deletar o usuário cadastrado.
 - [x] Listar os usuários cadastrado.
 
