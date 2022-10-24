@@ -62,7 +62,7 @@
 ### <strong>CRUD do Usuário</strong>
 
 - [x] Cadastrar um novo usuário.
-- [ ] Logar o usuário cadastrado.
+- [x] Logar o usuário cadastrado.
 - [ ] Editar o usuário cadastrado.
 - [ ] Deletar o usuário cadastrado.
 - [x] Listar os usuários cadastrado.
