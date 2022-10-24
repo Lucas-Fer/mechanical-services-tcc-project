@@ -28,6 +28,11 @@ export default class MechanicalController {
     const { status, response, error } = await this.mechanicalService.updateMechanical(req.body);
 
     return res.status(status).json(response ? response : error);
+  }
 
+  public async delete(req: Request, res: Response): Promise<Response> {
+    const { status, response, error } = await this.mechanicalService.deleteMechanical(req.body);
+
+    return res.status(status).json(response ? response : error);
   }
 }

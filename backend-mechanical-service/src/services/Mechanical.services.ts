@@ -91,4 +91,14 @@ export default class MechanicalService {
 
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };
   }
+
+  async deleteMechanical(params: IMechanical): Promise<Response> {
+    const mechanical = await this.findMechanicalById(params.id as number);
+
+    if (!mechanical) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' };
+
+    await this.mechanicalModel.destroy({ where: { mechanical_id: params.id } });
+
+    return { status: StatusCodes.OK, response: 'Delete successfully!' };
+  }
 }
