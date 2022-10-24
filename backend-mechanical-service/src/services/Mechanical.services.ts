@@ -45,4 +45,21 @@ export default class MechanicalService {
 
     return { status: StatusCodes.CREATED, response: result };
   }
+
+  async loginMechanical(params: IMechanical): Promise<Response> {
+    const mechanical = await this.findMechanicalByEmail(params.email as string);
+
+    if (!mechanical) return { status: StatusCodes.NOT_FOUND, error: 'User not found' };
+
+    const validadeMechanical = await this.mechanicalModel.findOne({
+      where: {
+        mechanical_email: params.email,
+        mechanical_password: params.password,
+      }
+    });
+
+    if (!validadeMechanical) return { status: StatusCodes.NOT_FOUND, error: 'Incorrect password' };
+
+    return { status: StatusCodes.OK, response: validadeMechanical };
+  }
 }

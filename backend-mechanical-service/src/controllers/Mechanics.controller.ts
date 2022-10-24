@@ -17,4 +17,10 @@ export default class MechanicalController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async login(req: Request, res: Response): Promise<Response> {
+    const { status, response, error } = await this.mechanicalService.loginMechanical(req.body);
+
+    return res.status(status).json(response ? response : error);
+  }
 }
