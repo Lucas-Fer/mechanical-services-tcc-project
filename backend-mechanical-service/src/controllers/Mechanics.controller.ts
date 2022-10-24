@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import IMechanical from "../@types/Mechanical.interface";
 import MechanicalService from "../services/Mechanical.services";
 
 export default class MechanicalController {
@@ -8,5 +9,12 @@ export default class MechanicalController {
     const { status, response } = await this.mechanicalService.getAllMechanics();
 
     return res.status(status).json(response);
+  }
+
+  public async create(req: Request, res: Response): Promise<Response> {
+    const { status, response, error } = await this.mechanicalService
+      .createNewMechanical(req.body as IMechanical);
+
+    return res.status(status).json(response ? response : error);
   }
 }

@@ -8,5 +8,6 @@ const mechanicalRoute = Router();
 const mechanicalController = new MechanicalController(new MechanicalService(Mechanical));
 
 mechanicalRoute.get('/', (req, res) => mechanicalController.getAll(req, res));
+mechanicalRoute.post('/register', (req, res) => mechanicalController.create(req, res));
 
 export default mechanicalRoute;

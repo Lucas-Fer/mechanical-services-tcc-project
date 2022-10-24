@@ -42,7 +42,14 @@ export default class UserService {
 
     if (user) return { status: StatusCodes.BAD_REQUEST, error: 'User already exist!' };
 
-    const result = await this.userModel.create(params);
+    const newUserObject = {
+      user_name: params.name,
+      user_email: params.email,
+      user_password: params.password,
+      user_phone: params.phone,
+    }
+
+    const result = await this.userModel.create(newUserObject);
 
     return { status: StatusCodes.CREATED, response: result };
   }
