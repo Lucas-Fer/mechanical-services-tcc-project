@@ -8,5 +8,6 @@ const userRouter = Router();
 const userController = new UserContoller(new UserService(UsersModel));
 
 userRouter.get('/', (req, res) => userController.getAll(req, res));
+userRouter.post('/', (req, res) => userController.create(req, res));
 
 export default userRouter;
