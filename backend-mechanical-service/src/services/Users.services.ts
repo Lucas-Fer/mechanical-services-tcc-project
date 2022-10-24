@@ -54,5 +54,19 @@ export default class UserService {
     return { status: StatusCodes.OK, response: validateUser };
   }
 
+  async updateUser(params: IUser): Promise<Response> {
+    const { email, name, password, phone, id } = params;
 
+    const result = await this.userModel
+      .update({
+        user_email: email,
+        user_name: name,
+        user_password: password,
+        user_phone: phone
+      }, {
+        where: { user_id: id }
+      });
+
+    return { status: StatusCodes.CREATED, response: result };
+  }
 }

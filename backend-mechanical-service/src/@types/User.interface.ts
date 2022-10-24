@@ -1,4 +1,5 @@
 export default interface IUser extends IUserLogin {
+  id?: number;
   name: string;
   phone: string;
 }
