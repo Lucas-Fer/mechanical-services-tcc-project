@@ -2,7 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
 export default class Mechanical extends Model {
-  public mechanical_id!: number;
+  public mechanical_id: number;
   public mechanical_name!: string;
   public mechanical_phone!: string;
   public mechanical_email!: string;
@@ -13,10 +13,10 @@ export default class Mechanical extends Model {
 
 Mechanical.init({
   mechanical_id: {
-    type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
     allowNull: false,
+    autoIncrement: true,
+    type: DataTypes.INTEGER,
   },
   mechanical_name: {
     type: DataTypes.STRING,
@@ -43,7 +43,7 @@ Mechanical.init({
     allowNull: true,
   },
 }, {
-  modelName: 'mechanical',
+  modelName: 'mechanicals',
   underscored: true,
   sequelize: db,
   timestamps: false,

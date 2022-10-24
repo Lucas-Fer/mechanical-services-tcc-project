@@ -67,4 +67,11 @@
 - [x] Deletar o usuário cadastrado.
 - [x] Listar os usuários cadastrado.
 
+### <strong>CRUD do Mecânico</strong>
+
+- [ ] Cadastrar um novo mecânico.
+- [ ] Logar o mecânico cadastrado.
+- [ ] Editar o mecânico cadastrado.
+- [ ] Deletar o mecânico cadastrado.
+- [x] Listar os mecânicos cadastrado.
 

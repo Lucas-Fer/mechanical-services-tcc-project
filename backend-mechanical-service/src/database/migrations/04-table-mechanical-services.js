@@ -19,7 +19,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         foreignKey: true,
         references: {
-          model: 'mechanical',
+          model: 'mechanicals',
           key: 'mechanical_id',
         },
       },
