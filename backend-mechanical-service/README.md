@@ -71,7 +71,7 @@
 
 - [x] Cadastrar um novo mecânico.
 - [x] Logar o mecânico cadastrado.
-- [ ] Editar o mecânico cadastrado.
-- [ ] Deletar o mecânico cadastrado.
+- [x] Editar o mecânico cadastrado.
+- [x] Deletar o mecânico cadastrado.
 - [x] Listar os mecânicos cadastrado.
 
