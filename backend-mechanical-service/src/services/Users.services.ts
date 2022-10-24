@@ -27,6 +27,16 @@ export default class UserService {
     return user;
   }
 
+  async findUserById(id: any) {
+    const user = await this.userModel.findOne({
+      where: {
+        user_id: id,
+      }
+    });
+
+    return user;
+  }
+
   async createNewUser(params: any): Promise<Response> {
     const user = await this.findUserByEmail(params.email);
 
@@ -57,7 +67,11 @@ export default class UserService {
   async updateUser(params: IUser): Promise<Response> {
     const { email, name, password, phone, id } = params;
 
-    const result = await this.userModel
+    const user = await this.findUserById(id);
+
+    if (!user) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
+
+    await this.userModel
       .update({
         user_email: email,
         user_name: name,
@@ -67,6 +81,17 @@ export default class UserService {
         where: { user_id: id }
       });
 
-    return { status: StatusCodes.CREATED, response: result };
+    return { status: StatusCodes.CREATED, response: 'Update successfully!' };
+
+  }
+
+  async deleteUser(params: IUser): Promise<Response> {
+    const user = await this.findUserById(params.id);
+
+    if (!user) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
+
+    await this.userModel.destroy({ where: { user_id: params.id } });
+
+    return { status: StatusCodes.OK, response: 'Delete successfully!' };
   }
 }

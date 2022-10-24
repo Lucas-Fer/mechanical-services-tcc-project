@@ -28,4 +28,10 @@ export default class UserContoller {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async delete(req: Request, res: Response): Promise<Response> {
+    const { status, response, error } = await this.userService.deleteUser(req.body as IUser);
+
+    return res.status(status).json(response ? response : error);
+  }
 }
