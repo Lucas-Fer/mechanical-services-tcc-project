@@ -1,6 +1,9 @@
-export default interface IUser {
-  user_name: string;
-  user_email: string;
-  user_phone: string;
-  user_password: string;
+export default interface IUser extends IUserLogin {
+  name: string;
+  phone: string;
+}
+
+export interface IUserLogin {
+  email: string;
+  password: string;
 }
