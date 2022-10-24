@@ -10,5 +10,6 @@ const mechanicalController = new MechanicalController(new MechanicalService(Mech
 mechanicalRoute.get('/', (req, res) => mechanicalController.getAll(req, res));
 mechanicalRoute.post('/register', (req, res) => mechanicalController.create(req, res));
 mechanicalRoute.post('/login', (req, res) => mechanicalController.login(req, res));
+mechanicalRoute.put('/update', (req, res) => mechanicalController.update(req, res));
 
 export default mechanicalRoute;

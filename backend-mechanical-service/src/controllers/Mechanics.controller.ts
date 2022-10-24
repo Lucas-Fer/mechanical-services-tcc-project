@@ -23,4 +23,11 @@ export default class MechanicalController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    const { status, response, error } = await this.mechanicalService.updateMechanical(req.body);
+
+    return res.status(status).json(response ? response : error);
+
+  }
 }
