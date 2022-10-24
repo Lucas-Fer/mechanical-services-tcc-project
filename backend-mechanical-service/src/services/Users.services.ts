@@ -27,7 +27,7 @@ export default class UserService {
     return user;
   }
 
-  async findUserById(id: any) {
+  async findUserById(id: number) {
     const user = await this.userModel.findOne({
       where: {
         user_id: id,
@@ -37,7 +37,7 @@ export default class UserService {
     return user;
   }
 
-  async createNewUser(params: any): Promise<Response> {
+  async createNewUser(params: IUser): Promise<Response> {
     const user = await this.findUserByEmail(params.email);
 
     if (user) return { status: StatusCodes.BAD_REQUEST, error: 'User already exist!' };
@@ -74,7 +74,7 @@ export default class UserService {
   async updateUser(params: IUser): Promise<Response> {
     const { email, name, password, phone, id } = params;
 
-    const user = await this.findUserById(id);
+    const user = await this.findUserById(id as number);
 
     if (!user) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
 
@@ -93,7 +93,7 @@ export default class UserService {
   }
 
   async deleteUser(params: IUser): Promise<Response> {
-    const user = await this.findUserById(params.id);
+    const user = await this.findUserById(params.id as number);
 
     if (!user) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
 

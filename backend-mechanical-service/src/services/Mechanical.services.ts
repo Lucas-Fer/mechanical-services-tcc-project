@@ -27,7 +27,7 @@ export default class MechanicalService {
     return mechanical;
   }
 
-  async createNewMechanical(params: any): Promise<Response> {
+  async createNewMechanical(params: IMechanical): Promise<Response> {
     const mechanical = await this.findMechanicalByEmail(params.email);
 
     if (mechanical) return { status: StatusCodes.BAD_REQUEST, error: 'Mechanical already exists' };

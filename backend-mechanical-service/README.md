@@ -69,7 +69,7 @@
 
 ### <strong>CRUD do Mecânico</strong>
 
-- [ ] Cadastrar um novo mecânico.
+- [x] Cadastrar um novo mecânico.
 - [ ] Logar o mecânico cadastrado.
 - [ ] Editar o mecânico cadastrado.
 - [ ] Deletar o mecânico cadastrado.
