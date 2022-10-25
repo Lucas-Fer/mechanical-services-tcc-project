@@ -6,9 +6,9 @@ export default class Services extends Model {
   public service_id!: number;
   public user_id!: number;
   public description!: string;
-  public car_model!: string;
-  public car_brand!: string;
-  public car_year!: number;
+  public vehicle_model!: string;
+  public vehicle_brand!: string;
+  public vehicle_year!: number;
 }
 
 Services.init({
@@ -26,15 +26,15 @@ Services.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
-  car_model: {
+  vehicle_model: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  car_brand: {
+  vehicle_brand: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  car_year: {
+  vehicle_year: {
     type: DataTypes.NUMBER,
     allowNull: true,
   },

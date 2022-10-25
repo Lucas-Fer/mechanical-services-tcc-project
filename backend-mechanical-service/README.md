@@ -54,7 +54,7 @@
   O banco tem quatro tabelas: 
   - A tabela `users`, com os atributos `user_id`, `name`, `email`, `phone` e `endereco`;
   - A tabela `mechanical`, com os atributos `mechanical_id`, `name`, `email`, `autonomous` e `mechanical_workshop`;
-  - A tabela `services`, com os atributos `service_id`, `user_id`, `description`, `car_model`,  `car_brand` e `car_year`;
+  - A tabela `services`, com os atributos `service_id`, `user_id`, `description`, `vehicle_model`,  `vehicle_brand` e `vehicle_year`;
   - A tabela `mechanical_service`, com os atributos `service_id`, `mechanical_id` e `status_service`;
 
 # Progresso dos Requisitos
@@ -74,4 +74,12 @@
 - [x] Editar o mecânico cadastrado.
 - [x] Deletar o mecânico cadastrado.
 - [x] Listar os mecânicos cadastrado.
+
+### <strong>CRUD dos Servicos (Usuário registra um novo problema)</strong>
+
+- [ ] Cadastrar um novo serviço.
+- [ ] Editar o serviço cadastrado.
+- [ ] Deletar o serviço cadastrado.
+- [x] Listar todos os serviços cadastrados.
+- [ ] Listar os serviços cadastrados pelo usuário.
 

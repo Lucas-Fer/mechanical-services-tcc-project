@@ -34,6 +34,9 @@ module.exports = {
         type: Sequelize.INTEGER(),
         allowNull: false,
       },
+      status_service: {
+        type: Sequelize.ENUM('OPEN', 'CLOSED'),
+      },
     });
   },
   dow: async (queryInterface, _Sequelize) => {
