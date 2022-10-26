@@ -18,13 +18,17 @@ export default class ServiceController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { status, response, error } = await this.userService.updateService(req.body as IService);
+    const { params: { id }, body } = req;
+
+    const { status, response, error } = await this.userService.updateService(id as string, body as IService);
 
     return res.status(status).json(response ? response : error);
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {
-    const { status, response, error } = await this.userService.deleteService(req.body);
+    const { id } = req.params;
+
+    const { status, response, error } = await this.userService.deleteService(id as string);
 
     return res.status(status).json(response ? response : error);
   }
@@ -32,7 +36,7 @@ export default class ServiceController {
   public async getUserServices(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
 
-    const { status, response, error } = await this.userService.getUserServices(id);
+    const { status, response, error } = await this.userService.getUserServices(id as string);
 
     return res.status(status).json(response ? response : error);
   }

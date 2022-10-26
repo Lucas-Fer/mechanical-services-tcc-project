@@ -71,33 +71,32 @@ export default class UserService {
     return { status: StatusCodes.OK, response: validateUser };
   }
 
-  async updateUser(params: IUser): Promise<Response> {
-    const { email, name, password, phone, id } = params;
+  async updateUser(idParams: string, bodyParams: IUser): Promise<Response> {
 
-    const user = await this.findUserById(id as number);
+    const user = await this.findUserById(Number(idParams) as number);
 
     if (!user) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
 
     await this.userModel
       .update({
-        user_email: email,
-        user_name: name,
-        user_password: password,
-        user_phone: phone
+        user_email: bodyParams.email,
+        user_name: bodyParams.name,
+        user_password: bodyParams.password,
+        user_phone: bodyParams.phone
       }, {
-        where: { user_id: id }
+        where: { user_id: idParams }
       });
 
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };
 
   }
 
-  async deleteUser(params: IUser): Promise<Response> {
-    const user = await this.findUserById(params.id as number);
+  async deleteUser(idParams: string): Promise<Response> {
+    const user = await this.findUserById(Number(idParams) as number);
 
     if (!user) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
 
-    await this.userModel.destroy({ where: { user_id: params.id } });
+    await this.userModel.destroy({ where: { user_id: Number(idParams) } });
 
     return { status: StatusCodes.OK, response: 'Delete successfully!' };
   }

@@ -52,39 +52,39 @@ export default class Service {
     return findServiceById;
   }
 
-  async updateService(params: IService): Promise<Response> {
-    const service = await this.getServiceById(params.serviceId as number);
+  async updateService(idParams: string, bodyParams: IService): Promise<Response> {
+    const service = await this.getServiceById(Number(idParams) as number);
 
     if (!service) return { status: StatusCodes.NOT_FOUND, error: 'Service not found' };
 
     const newServiceObject = {
       user_id: service.user_id,
-      description: params.description,
-      vehicle_model: params.vehicleModel,
-      vehicle_brand: params.vehicleBrand,
-      vehicle_year: params.vehicleYear,
+      description: bodyParams.description,
+      vehicle_model: bodyParams.vehicleModel,
+      vehicle_brand: bodyParams.vehicleBrand,
+      vehicle_year: bodyParams.vehicleYear,
       status: StatusService.OPEN,
     }
 
     await this.tableService.update(newServiceObject, {
-      where: { service_id: params.serviceId }
+      where: { service_id: idParams }
     });
 
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };
   }
 
-  async deleteService(params: IService): Promise<Response> {
-    const service = await this.getServiceById(params.serviceId as number);
+  async deleteService(idParams: string): Promise<Response> {
+    const service = await this.getServiceById(Number(idParams) as number);
 
     if (!service) return { status: StatusCodes.NOT_FOUND, error: 'Service not found' };
 
-    await this.tableService.destroy({ where: { service_id: params.serviceId } });
+    await this.tableService.destroy({ where: { service_id: idParams } });
 
     return { status: StatusCodes.CREATED, response: 'Delete successfully!' };
   }
 
   async getUserServices(idParams: string): Promise<Response> {
-    const findUserById = await this._userService.findUserById(Number(idParams));
+    const findUserById = await this._userService.findUserById(Number(idParams) as number);
 
     if (!findUserById) return { status: StatusCodes.NOT_FOUND, error: 'User not found' }
 

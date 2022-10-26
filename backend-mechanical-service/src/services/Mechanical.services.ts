@@ -73,31 +73,31 @@ export default class MechanicalService {
     return { status: StatusCodes.OK, response: validadeMechanical };
   }
 
-  async updateMechanical(params: IMechanical): Promise<Response> {
-    const mechanical = await this.findMechanicalById(params.id as number);
+  async updateMechanical(idParams: string, bodyParams: IMechanical): Promise<Response> {
+    const mechanical = await this.findMechanicalById(Number(idParams) as number);
 
     if (!mechanical) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' };
 
     await this.mechanicalModel.update({
-      mechanical_name: params.name,
-      mechanical_email: params.email,
-      mechanical_password: params.password,
-      mechanical_phone: params.phone,
-      autonomous: params.autonomous,
-      workshop: params.workshop
+      mechanical_name: bodyParams.name,
+      mechanical_email: bodyParams.email,
+      mechanical_password: bodyParams.password,
+      mechanical_phone: bodyParams.phone,
+      autonomous: bodyParams.autonomous,
+      workshop: bodyParams.workshop
     }, {
-      where: { mechanical_id: params.id }
+      where: { mechanical_id: Number(idParams) }
     });
 
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };
   }
 
-  async deleteMechanical(params: IMechanical): Promise<Response> {
-    const mechanical = await this.findMechanicalById(params.id as number);
+  async deleteMechanical(idParams: string): Promise<Response> {
+    const mechanical = await this.findMechanicalById(Number(idParams) as number);
 
     if (!mechanical) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' };
 
-    await this.mechanicalModel.destroy({ where: { mechanical_id: params.id } });
+    await this.mechanicalModel.destroy({ where: { mechanical_id: Number(idParams) } });
 
     return { status: StatusCodes.OK, response: 'Delete successfully!' };
   }

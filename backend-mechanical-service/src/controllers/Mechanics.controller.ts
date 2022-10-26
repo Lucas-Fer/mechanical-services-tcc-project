@@ -25,13 +25,17 @@ export default class MechanicalController {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { status, response, error } = await this.mechanicalService.updateMechanical(req.body);
+    const { params: { id }, body } = req;
+
+    const { status, response, error } = await this.mechanicalService.updateMechanical(id as string, body as IMechanical);
 
     return res.status(status).json(response ? response : error);
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {
-    const { status, response, error } = await this.mechanicalService.deleteMechanical(req.body);
+    const { id } = req.params;
+
+    const { status, response, error } = await this.mechanicalService.deleteMechanical(id as string);
 
     return res.status(status).json(response ? response : error);
   }
