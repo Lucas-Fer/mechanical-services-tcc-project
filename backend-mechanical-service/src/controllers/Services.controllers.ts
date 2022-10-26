@@ -16,4 +16,10 @@ export default class ServiceController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    const { status, response, error } = await this.userService.updateService(req.body as IService);
+
+    return res.status(status).json(response ? response : error);
+  }
 }

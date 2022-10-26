@@ -4,11 +4,12 @@ import Services from "../database/models/Services.model";
 import UserService from "./Users.services";
 import UsersModel from "../database/models/Users.model";
 import StatusService from "../@types/StatusService.enum";
+import { where } from "sequelize";
 
 type Response = {
   status: number;
   error?: string;
-  response?: IService[] | IService | Object;
+  response?: IService[] | IService | Object | String;
 }
 
 export default class Service {
@@ -38,8 +39,35 @@ export default class Service {
       status: StatusService.OPEN,
     }
 
-    const result = await this.tableService.create(newServiceObject);
+    const newService = await this.tableService.create(newServiceObject);
 
-    return { status: StatusCodes.CREATED, response: result };
+    return { status: StatusCodes.CREATED, response: newService };
+  }
+
+  async getServiceById(id: number) {
+    const findServiceById = await this.tableService.findOne({ where: { service_id: id } });
+
+    return findServiceById;
+  }
+
+  async updateService(params: IService): Promise<Response> {
+    const service = await this.getServiceById(params.serviceId as number);
+
+    if (!service) return { status: StatusCodes.NOT_FOUND, error: 'Service not found' };
+
+    const newServiceObject = {
+      user_id: service.user_id,
+      description: params.description,
+      vehicle_model: params.vehicleModel,
+      vehicle_brand: params.vehicleBrand,
+      vehicle_year: params.vehicleYear,
+      status: StatusService.OPEN,
+    }
+
+    await this.tableService.update(newServiceObject, {
+      where: { service_id: params.serviceId }
+    });
+
+    return { status: StatusCodes.CREATED, response: 'Update successfully!' };
   }
 }
