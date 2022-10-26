@@ -77,9 +77,9 @@
 
 ### <strong>CRUD dos Servicos (Usuário registra um novo problema)</strong>
 
-- [ ] Cadastrar um novo serviço.
-- [ ] Editar o serviço cadastrado.
-- [ ] Deletar o serviço cadastrado.
+- [x] Cadastrar um novo serviço.
+- [x] Editar o serviço cadastrado.
+- [x] Deletar o serviço cadastrado.
 - [x] Listar todos os serviços cadastrados.
-- [ ] Listar os serviços cadastrados pelo usuário.
+- [x] Listar os serviços cadastrados pelo usuário.
 

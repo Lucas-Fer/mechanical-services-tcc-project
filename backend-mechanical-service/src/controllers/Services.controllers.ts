@@ -28,4 +28,12 @@ export default class ServiceController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async getUserServices(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    const { status, response, error } = await this.userService.getUserServices(id);
+
+    return res.status(status).json(response ? response : error);
+  }
 }

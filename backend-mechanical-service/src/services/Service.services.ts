@@ -4,14 +4,16 @@ import Services from "../database/models/Services.model";
 import UserService from "./Users.services";
 import UsersModel from "../database/models/Users.model";
 import StatusService from "../@types/StatusService.enum";
-import { where } from "sequelize";
 
 type Response = {
   status: number;
   error?: string;
-  response?: IService[] | IService | Object | String;
+  response?: IService[] | IService | Object | string | any;
 }
 
+type Object = {
+  id: string;
+}
 export default class Service {
   private _userService: UserService;
 
@@ -80,4 +82,15 @@ export default class Service {
 
     return { status: StatusCodes.CREATED, response: 'Delete successfully!' };
   }
+
+  async getUserServices(idParams: string): Promise<Response> {
+    const findUserById = await this._userService.findUserById(Number(idParams));
+
+    if (!findUserById) return { status: StatusCodes.NOT_FOUND, error: 'User not found' }
+
+    const result = await this.tableService.findAll({ where: { user_id: Number(idParams) } });
+
+    return { status: StatusCodes.OK, response: result };
+  }
+
 }
