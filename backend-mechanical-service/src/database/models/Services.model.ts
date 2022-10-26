@@ -1,14 +1,16 @@
 import { DataTypes, Model } from 'sequelize';
+import StatusService from '../../@types/StatusService.enum';
 import db from '.';
 import Users from './Users.model';
 
 export default class Services extends Model {
-  public service_id!: number;
+  public service_id?: number;
   public user_id!: number;
   public description!: string;
   public vehicle_model!: string;
   public vehicle_brand!: string;
   public vehicle_year!: number;
+  public status!: StatusService;
 }
 
 Services.init({
@@ -37,6 +39,10 @@ Services.init({
   vehicle_year: {
     type: DataTypes.NUMBER,
     allowNull: true,
+  },
+  status: {
+    type: DataTypes.ENUM('OPEN, CLOSED'),
+    allowNull: false,
   },
 }, {
   modelName: 'services',

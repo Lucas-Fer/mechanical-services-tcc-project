@@ -9,7 +9,7 @@ class App {
 
     this.config();
 
-    this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.get('/', (_req, res) => res.json({ ok: true }));
     this.app.use('/users', routes.users);
     this.app.use('/mechanics', routes.mechanics);
     this.app.use('/services', routes.services);

@@ -34,7 +34,7 @@ module.exports = {
         type: Sequelize.INTEGER(),
         allowNull: false,
       },
-      status_service: {
+      status: {
         type: Sequelize.ENUM('OPEN', 'CLOSED'),
       },
     });

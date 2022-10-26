@@ -7,7 +7,7 @@ module.exports = {
         vehicle_model: 'CHEVROLET CORSA',
         vehicle_brand: 'CHEVROLET',
         vehicle_year: 2020,
-        status_service: 'OPEN'
+        status: 'OPEN'
       },
       {
         user_id: 1,
@@ -15,7 +15,7 @@ module.exports = {
         vehicle_model: 'FIAT PUNTO',
         vehicle_brand: 'FIAT',
         vehicle_year: 2019,
-        status_service: 'CLOSED'
+        status: 'CLOSED'
       },
       {
         user_id: 2,
@@ -23,7 +23,7 @@ module.exports = {
         vehicle_model: 'FORD FOCUS',
         vehicle_brand: 'FORD',
         vehicle_year: 2019,
-        status_service: 'OPEN'
+        status: 'OPEN'
       },
     ], {});
   },
