@@ -19,5 +19,7 @@ Será utilizado o banco de dados MySQL para a gestão de dados. Além de a API s
 
 **Front-end:** ReactJS, JavaScript, TypeScript
 
-O front realizará a comunicação com o banco, além de ser o responsável pela interação do usuário com o sistema, aplicando práticas de usablidade e responsividade. 
+O front realizará a comunicação com o banco, além de ser o responsável pela interação do usuário com o sistema, aplicando práticas de usablidade e responsividade.
+
+Será utilizado Context API + Hooks para gerenciar os estados da aplicação.
 
