@@ -2,45 +2,27 @@
 
   ## <strong>Variável de ambiente</strong>
 
-   - Configurar o arquivo database/_utils.js, alterando as variáveis relacionadas ao seu banco nome do localhost, root, senha, etc..
-   
-   > Esse arquivo será utilizado para criar e popular o Banco com informações base.
+   - Configurar o arquivo .env na RAIZ do projeto BAKCEND, alterando as variáveis relacionadas ao seu banco nome do localhost, root, senha, etc..
    
    ```
-   const connection = mysql.createPool({
-    host: 'localhost', || alterar
-    user: 'root', || alterar
-    password: 'docker', || alterar
-    multipleStatements: true || MANTER,
-   });
+    MYSQL_USER=root
+    MYSQL_PASSWORD=docker
+    MYSQL_DATABASE=Mechanical_Services
+    MYSQL_HOST=localhost
    ```
-  - Alterar também o arquivo model/connection.js
-
-  > Esse arquivo será utilizado para realizar as requisições nos endpoints.
-
-  ```
-  const connection = mysql.createPool({
-   host: 'localhost', || alterar
-   user: 'root', || alterar
-   password: 'docker', || alterar
-   database: 'Mechanical_Services', || MANTER
-  });
-  ```
-
   ## <strong>Rodando Localmente</strong>
 
   - **:warning: Atenção:** Para rodar o projeto desta forma, **obrigatoriamente** você deve ter o `Node.js` instalado em seu computador.
   - **:warning: Atenção:** A versão do `Node.js` e `NPM` a ser utilizada é `"node": ">=16.0.0"` e `"npm": ">=7.0.0"`, como descrito a chave `engines` no arquivo `package.json`. Idealmente deve-se utilizar o Node.js na `versão 16.14`, a versão na que esse projeto foi testado.
 
-  - Entrar na pasta backend do projeto e rodar o comando:
+  - Entrar na pasta backend do projeto e rodar o comando para instalar todas as dependências:
   ```
     npm install
   ```
   - Criar o banco com as tabelas e popular com informações base:
 
   ```
-    npm run migration
-    npm run seed
+    npm run db:reset
   ```
 
   <br/>

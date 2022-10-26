@@ -12,9 +12,7 @@
     "start": "node index.js",
     "dev": "tsnd index.ts",
     "dev2": "nodemon index.ts",
-    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "migration": "node -e \"require('./database/_utils').runMigration()\"",
-    "seed": "node -e \"require('./database/_utils').runSeed()\""
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
