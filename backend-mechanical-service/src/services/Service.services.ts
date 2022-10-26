@@ -70,4 +70,14 @@ export default class Service {
 
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };
   }
+
+  async deleteService(params: IService): Promise<Response> {
+    const service = await this.getServiceById(params.serviceId as number);
+
+    if (!service) return { status: StatusCodes.NOT_FOUND, error: 'Service not found' };
+
+    await this.tableService.destroy({ where: { service_id: params.serviceId } });
+
+    return { status: StatusCodes.CREATED, response: 'Delete successfully!' };
+  }
 }

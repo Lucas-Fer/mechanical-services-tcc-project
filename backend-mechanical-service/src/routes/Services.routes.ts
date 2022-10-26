@@ -10,5 +10,6 @@ const servicesController = new ServiceController(new Service(Services));
 servicesRoutes.get('/', (req, res) => servicesController.getAll(req, res));
 servicesRoutes.post('/register', (req, res) => servicesController.create(req, res));
 servicesRoutes.put('/update', (req, res) => servicesController.update(req, res));
+servicesRoutes.delete('/delete', (req, res) => servicesController.delete(req, res));
 
 export default servicesRoutes;
