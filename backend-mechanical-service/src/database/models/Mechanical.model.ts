@@ -1,14 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
+import MechanicalStatus from '../../@types/MechanicalStatus.enum';
 import db from '.';
+import WorkshopModel from './Workshops.model';
 
 export default class Mechanical extends Model {
   public mechanical_id: number;
   public mechanical_name!: string;
-  public mechanical_phone!: string;
   public mechanical_email!: string;
   public mechanical_password!: string;
-  public autonomous!: boolean;
-  public mechanical_workshop: string;
+  public work_status!: MechanicalStatus;
+  public mechanical_workshop: number;
 }
 
 Mechanical.init({
@@ -22,10 +23,6 @@ Mechanical.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
-  mechanical_phone: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   mechanical_email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -34,13 +31,19 @@ Mechanical.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
-  autonomous: {
+  work_status: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  mechanical_workshop: {
-    type: DataTypes.STRING,
-    allowNull: true,
+  workshop_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    references: {
+      model: WorkshopModel,
+      key: 'workshop_id',
+    },
   },
 }, {
   modelName: 'mechanicals',

@@ -2,6 +2,8 @@ import { DataTypes, Model } from 'sequelize';
 import StatusService from '../../@types/StatusService.enum';
 import db from '.';
 import Users from './Users.model';
+import UsersModel from './Users.model';
+import Mechanical from './Mechanical.model';
 
 export default class Services extends Model {
   public service_id?: number;
@@ -10,6 +12,7 @@ export default class Services extends Model {
   public vehicle_model!: string;
   public vehicle_brand!: string;
   public vehicle_year!: number;
+  public mechanical_id?: number;
   public status!: StatusService;
 }
 
@@ -23,6 +26,12 @@ Services.init({
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    references: {
+      model: UsersModel,
+      key: 'user_id',
+    },
   },
   description: {
     type: DataTypes.STRING,
@@ -40,8 +49,18 @@ Services.init({
     type: DataTypes.NUMBER,
     allowNull: true,
   },
+  mechanical_id: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    references: {
+      model: Mechanical,
+      key: 'mechanical_id',
+    },
+  },
   status: {
-    type: DataTypes.ENUM('OPEN, CLOSED'),
+    type: DataTypes.ENUM('OPEN', 'PROGRESS', 'CLOSED'),
     allowNull: false,
   },
 }, {

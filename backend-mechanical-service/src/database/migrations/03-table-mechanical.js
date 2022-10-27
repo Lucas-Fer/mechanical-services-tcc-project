@@ -21,6 +21,7 @@ module.exports = {
       },
       work_status: {
         type: Sequelize.ENUM('AVAILABLE', 'BUSY'),
+        allowNull: false,
       },
       workshop_id: {
         type: Sequelize.INTEGER(),
