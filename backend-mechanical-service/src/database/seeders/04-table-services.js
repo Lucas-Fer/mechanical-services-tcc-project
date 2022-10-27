@@ -15,7 +15,8 @@ module.exports = {
         vehicle_model: 'FIAT PUNTO',
         vehicle_brand: 'FIAT',
         vehicle_year: 2019,
-        status: 'CLOSED'
+        status: 'PROGRESS',
+        mechanical_id: 1,
       },
       {
         user_id: 2,

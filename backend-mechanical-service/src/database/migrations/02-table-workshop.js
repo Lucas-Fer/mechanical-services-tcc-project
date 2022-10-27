@@ -1,38 +1,31 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('mechanicals', {
-      mechanical_id: {
+    await queryInterface.createTable('workshops', {
+      workshop_id: {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
         type: Sequelize.INTEGER(),
       },
-      mechanical_name: {
+      workshop_name: {
         type: Sequelize.STRING(255),
         allowNull: false,
       },
-      mechanical_phone: {
-        type: Sequelize.STRING(14),
-        allowNull: false,
-      },
-      mechanical_email: {
+      workshop_email: {
         type: Sequelize.STRING(255),
         allowNull: false,
       },
-      mechanical_password: {
+      workshop_password: {
         type: Sequelize.STRING(255),
         allowNull: false,
       },
-      autonomous: {
-        type: Sequelize.BOOLEAN(),
-        allowNull: false,
-      },
-      mechanical_workshop: {
+      workshop_location: {
         type: Sequelize.STRING(255),
+        allowNull: false,
       },
     });
   },
   dow: async (queryInterface, _Sequelize) => {
-    await queryInterface.dropTable('mechanicals');
+    await queryInterface.dropTable('workshops');
   },
 };

@@ -34,8 +34,19 @@ module.exports = {
         type: Sequelize.INTEGER(),
         allowNull: false,
       },
+      mechanical_id: {
+        type: Sequelize.INTEGER(),
+        allowNull: true,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        foreignKey: true,
+        references: {
+          model: 'mechanicals',
+          key: 'mechanical_id',
+        },
+      },
       status: {
-        type: Sequelize.ENUM('OPEN', 'CLOSED'),
+        type: Sequelize.ENUM('OPEN', 'PROGRESS', 'CLOSED'),
       },
     });
   },
