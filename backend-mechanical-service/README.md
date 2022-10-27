@@ -33,11 +33,12 @@
 
   ### Tabelas
 
-  O banco tem quatro tabelas: 
-  - A tabela `users`, com os atributos `user_id`, `name`, `email`, `phone` e `endereco`;
-  - A tabela `mechanical`, com os atributos `mechanical_id`, `name`, `email`, `autonomous` e `mechanical_workshop`;
-  - A tabela `services`, com os atributos `service_id`, `user_id`, `description`, `vehicle_model`,  `vehicle_brand` e `vehicle_year`;
-  - A tabela `mechanical_service`, com os atributos `service_id`, `mechanical_id` e `status_service`;
+  O banco tem as seguintes tabelas: 
+  - A tabela `users`, com os atributos `user_id`, `name`, `email`, `phone` e `location`;
+  - A tabela `mechanical`, com os atributos `mechanical_id`, `name`, `email`, `password`, e `mechanical_workshop`;
+  - A tabela `services`, com os atributos `service_id`, `user_id`, `description`, `vehicle_model`,  `vehicle_brand`, `vehicle_year`, `mechanical_id`;
+  - A tabela `manager`, com os atributos `manager_id`, `manager_name`, `manager_email` e `manager_workshop`;
+  - A tabela `workshop` coms os atributos `workshop_id`, `workshop_name`, `workshop_location`;
 
 # Progresso dos Requisitos
 
