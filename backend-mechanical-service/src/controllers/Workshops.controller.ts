@@ -16,4 +16,10 @@ export default class WorkshopController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async login(req: Request, res: Response): Promise<Response> {
+    const { status, response, error } = await this.workshopService.loginWorkshop(req.body as IWorkshop);
+
+    return res.status(status).json(response ? response : error);
+  }
 }

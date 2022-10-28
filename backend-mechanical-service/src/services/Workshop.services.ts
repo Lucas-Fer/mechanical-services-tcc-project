@@ -41,4 +41,21 @@ export default class WorkshopService {
 
     return { status: StatusCodes.CREATED, response: result };
   }
+
+  async loginWorkshop(params: IWorkshop): Promise<Response> {
+    const workshop = await this.findWorkshopByEmail(params.email);
+
+    if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'Workshop not found!' };
+
+    const validateWorkshop = await this.workshopModel.findOne({
+      where: {
+        workshop_email: workshop.workshop_email,
+        workshop_password: params.password,
+      }
+    });
+
+    if (!validateWorkshop) return { status: StatusCodes.BAD_REQUEST, error: 'Incorrect Password!' };
+
+    return { status: StatusCodes.OK, response: validateWorkshop };
+  }
 }
