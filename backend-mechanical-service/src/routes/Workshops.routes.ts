@@ -10,6 +10,7 @@ const workshopController = new WorkshopController(new WorkshopService(WorkshopMo
 workshopRoute.get('/', (req, res) => workshopController.getAll(req, res));
 workshopRoute.post('/register', (req, res) => workshopController.create(req, res));
 workshopRoute.post('/login', (req, res) => workshopController.login(req, res));
+workshopRoute.put('/update/:id', (req, res) => workshopController.update(req, res));
 
 
 export default workshopRoute;

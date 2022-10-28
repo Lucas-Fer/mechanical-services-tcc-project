@@ -25,6 +25,16 @@ export default class WorkshopService {
     return workshop;
   }
 
+  async findWorkshopById(id: number) {
+    const workshop = await this.workshopModel.findOne({
+      where: {
+        workshop_id: id,
+      }
+    });
+
+    return workshop;
+  }
+
   async createNewWorkShop(params: IWorkshop): Promise<Response> {
     const workshop = await this.findWorkshopByEmail(params.email);
 
@@ -57,5 +67,25 @@ export default class WorkshopService {
     if (!validateWorkshop) return { status: StatusCodes.BAD_REQUEST, error: 'Incorrect Password!' };
 
     return { status: StatusCodes.OK, response: validateWorkshop };
+  }
+
+  async updateWorkshop(idParams: string, bodyParams: IWorkshop): Promise<Response> {
+
+    const workshop = await this.findWorkshopById(Number(idParams) as number);
+
+    if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
+
+    await this.workshopModel
+      .update({
+        workshop_name: bodyParams.name,
+        workshop_email: bodyParams.email,
+        workshop_password: bodyParams.password,
+        workshop_location: bodyParams.location,
+      }, {
+        where: { workshop_id: idParams }
+      });
+
+    return { status: StatusCodes.CREATED, response: 'Update successfully!' };
+
   }
 }

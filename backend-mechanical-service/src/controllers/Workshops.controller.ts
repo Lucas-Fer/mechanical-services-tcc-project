@@ -22,4 +22,11 @@ export default class WorkshopController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    const { params: { id }, body } = req;
+    const { status, response, error } = await this.workshopService.updateWorkshop(id as string, body as IWorkshop);
+
+    return res.status(status).json(response ? response : error);
+  }
 }
