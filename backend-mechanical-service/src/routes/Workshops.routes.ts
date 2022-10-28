@@ -8,5 +8,6 @@ const workshopRoute = Router();
 const workshopController = new WorkshopController(new WorkshopService(WorkshopModel))
 
 workshopRoute.get('/', (req, res) => workshopController.getAll(req, res));
+workshopRoute.post('/register', (req, res) => workshopController.create(req, res));
 
 export default workshopRoute;

@@ -1,7 +1,7 @@
-export default interface IWorkshop {
+export default interface IWorkshop extends IWorkshopLogin {
   id?: number;
   name: string;
-  workshop_location: string;
+  location: string;
 }
 
 export interface IWorkshopLogin {
