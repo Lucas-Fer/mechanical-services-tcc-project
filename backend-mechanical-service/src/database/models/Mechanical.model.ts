@@ -51,3 +51,5 @@ Mechanical.init({
   sequelize: db,
   timestamps: false,
 });
+
+Mechanical.belongsTo(WorkshopModel, { foreignKey: 'workshop_id' });

@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import db from '.';
+import WorkshopModel from "./Workshops.model";
 
 export default class ManagersModel extends Model {
   public manager_id!: number;
@@ -28,9 +29,21 @@ ManagersModel.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
+  workshop_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    references: {
+      model: WorkshopModel,
+      key: 'workshop_id',
+    },
+  },
 }, {
   modelName: 'managers',
   underscored: true,
   sequelize: db,
   timestamps: false,
-})
+});
+
+ManagersModel.belongsTo(WorkshopModel, { foreignKey: 'workshop_id' });

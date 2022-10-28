@@ -103,14 +103,4 @@ export default class WorkshopService {
 
     return { status: StatusCodes.OK, response: 'Delete successfully!' };
   }
-
-  async createNewMechanical(workshopId: string, bodyParams: IMechanical): Promise<Response> {
-    const workshop = await this.findWorkshopById(Number(workshopId) as number);
-
-    if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'Workshop not found!' };
-
-    const result = await this._mechanicalService.createNewMechanical(workshopId, bodyParams);
-
-    return { status: result.status, response: result.error ? result.error : result.response };
-  }
 }

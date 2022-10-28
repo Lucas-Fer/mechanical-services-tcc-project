@@ -72,4 +72,6 @@ Services.init({
 
 Services.belongsTo(Users, { foreignKey: 'user_id' });
 
+Services.hasOne(Mechanical, { foreignKey: 'mechanical_id' });
+
 Users.hasMany(Services, { foreignKey: 'user_id' });

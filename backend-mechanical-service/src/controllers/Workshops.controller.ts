@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
+import MechanicalService from "../services/Mechanical.services";
 import IMechanical from "../@types/Mechanical.interface";
 import IWorkshop from "../@types/Workshop.interface";
 import WorshopService from "../services/Workshop.services";
+import Mechanical from "../database/models/Mechanical.model";
 
 export default class WorkshopController {
-  constructor(private workshopService: WorshopService) { }
+  private _mechanicalService: MechanicalService;
+  constructor(private workshopService: WorshopService) {
+    this._mechanicalService = new MechanicalService(Mechanical);
+  }
 
   public async getAll(_req: Request, res: Response): Promise<Response> {
     const { status, response } = await this.workshopService.getAllWorkshops();
@@ -41,7 +46,7 @@ export default class WorkshopController {
   public async createMechanical(req: Request, res: Response): Promise<Response> {
     const { params: { id }, body } = req;
 
-    const { status, response, error } = await this.workshopService
+    const { status, response, error } = await this._mechanicalService
       .createNewMechanical(id as string, body as IMechanical);
 
     return res.status(status).json(response ? response : error);
