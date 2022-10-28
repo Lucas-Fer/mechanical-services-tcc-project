@@ -35,9 +35,9 @@
 
   O banco tem as seguintes tabelas: 
   - A tabela `users`, com os atributos `user_id`, `name`, `email`, `phone` e `location`;
-  - A tabela `mechanical`, com os atributos `mechanical_id`, `name`, `email`, `password`, e `mechanical_workshop`;
+  - A tabela `mechanical`, com os atributos `mechanical_id`, `name`, `email`, `password`, e `workshop_id`;
   - A tabela `services`, com os atributos `service_id`, `user_id`, `description`, `vehicle_model`,  `vehicle_brand`, `vehicle_year`, `mechanical_id`;
-  - A tabela `manager`, com os atributos `manager_id`, `manager_name`, `manager_email` e `manager_workshop`;
+  - A tabela `manager`, com os atributos `manager_id`, `manager_name`, `manager_email`, `manager_password` e `workshop_id`;
   - A tabela `workshop` coms os atributos `workshop_id`, `workshop_name`, `workshop_location`;
 
 # Progresso dos Requisitos
