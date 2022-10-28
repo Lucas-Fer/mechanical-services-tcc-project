@@ -70,7 +70,6 @@ export default class WorkshopService {
   }
 
   async updateWorkshop(idParams: string, bodyParams: IWorkshop): Promise<Response> {
-
     const workshop = await this.findWorkshopById(Number(idParams) as number);
 
     if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
@@ -86,6 +85,15 @@ export default class WorkshopService {
       });
 
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };
+  }
 
+  async deleteWorkshop(idParams: string): Promise<Response> {
+    const workshop = await this.findWorkshopById(Number(idParams) as number);
+
+    if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
+
+    await this.workshopModel.destroy({ where: { workshop_id: Number(idParams) } });
+
+    return { status: StatusCodes.OK, response: 'Delete successfully!' };
   }
 }

@@ -29,4 +29,11 @@ export default class WorkshopController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async delete(req: Request, res: Response): Promise<Response> {
+    const { params: { id } } = req;
+    const { status, response, error } = await this.workshopService.deleteWorkshop(id as string);
+
+    return res.status(status).json(response ? response : error);
+  }
 }
