@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import IMechanical from "../@types/Mechanical.interface";
 import IWorkshop from "../@types/Workshop.interface";
 import WorshopService from "../services/Workshop.services";
 
@@ -33,6 +34,15 @@ export default class WorkshopController {
   public async delete(req: Request, res: Response): Promise<Response> {
     const { params: { id } } = req;
     const { status, response, error } = await this.workshopService.deleteWorkshop(id as string);
+
+    return res.status(status).json(response ? response : error);
+  }
+
+  public async createMechanical(req: Request, res: Response): Promise<Response> {
+    const { params: { id }, body } = req;
+
+    const { status, response, error } = await this.workshopService
+      .createNewMechanical(id as string, body as IMechanical);
 
     return res.status(status).json(response ? response : error);
   }

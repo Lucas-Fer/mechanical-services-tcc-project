@@ -37,7 +37,7 @@ export default class MechanicalService {
     return user;
   }
 
-  async createNewMechanical(params: IMechanical): Promise<Response> {
+  async createNewMechanical(workshopId: string, params: IMechanical): Promise<Response> {
     const mechanical = await this.findMechanicalByEmail(params.email);
 
     if (mechanical) return { status: StatusCodes.BAD_REQUEST, error: 'Mechanical already exists' };
@@ -46,9 +46,8 @@ export default class MechanicalService {
       mechanical_name: params.name,
       mechanical_email: params.email,
       mechanical_password: params.password,
-      mechanical_phone: params.phone,
-      autonomous: params.autonomous,
-      workshop: params.workshop ? params.workshop : null,
+      work_status: params.workstatus,
+      workshop_id: workshopId,
     }
 
     const result = await this.mechanicalModel.create(newMechanicalObject);
@@ -84,7 +83,6 @@ export default class MechanicalService {
       mechanical_password: bodyParams.password,
       mechanical_phone: bodyParams.phone,
       autonomous: bodyParams.autonomous,
-      workshop: bodyParams.workshop
     }, {
       where: { mechanical_id: Number(idParams) }
     });

@@ -13,4 +13,6 @@ workshopRoute.post('/login', (req, res) => workshopController.login(req, res));
 workshopRoute.put('/update/:id', (req, res) => workshopController.update(req, res));
 workshopRoute.delete('/delete/:id', (req, res) => workshopController.delete(req, res));
 
+workshopRoute.post('/:id/register-mechanical', (req, res) => workshopController.createMechanical(req, res));
+
 export default workshopRoute;

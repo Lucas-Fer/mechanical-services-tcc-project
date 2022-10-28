@@ -1,3 +1,5 @@
+import MechanicalStatus from "./MechanicalStatus.enum";
+
 export default interface IMechanical {
   id?: number;
   name: string;
@@ -5,5 +7,5 @@ export default interface IMechanical {
   email: string;
   password: string;
   autonomous: boolean;
-  workshop: string;
+  workstatus: MechanicalStatus;
 };

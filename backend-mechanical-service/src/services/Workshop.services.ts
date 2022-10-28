@@ -1,6 +1,9 @@
+import Mechanical from "../database/models/Mechanical.model";
+import IMechanical from "../@types/Mechanical.interface";
 import StatusCodes from "../@types/StatusCodes.enum";
 import IWorkshop from "../@types/Workshop.interface";
 import WorkshopModel from "../database/models/Workshops.model";
+import MechanicalService from "./Mechanical.services";
 
 type Response = {
   status: number;
@@ -9,7 +12,11 @@ type Response = {
 }
 
 export default class WorkshopService {
-  constructor(private workshopModel: typeof WorkshopModel) { }
+  private _mechanicalService: MechanicalService;
+
+  constructor(private workshopModel: typeof WorkshopModel) {
+    this._mechanicalService = new MechanicalService(Mechanical);
+  }
 
   async getAllWorkshops(): Promise<Response> {
     const allWorkshops = await this.workshopModel.findAll();
@@ -90,10 +97,20 @@ export default class WorkshopService {
   async deleteWorkshop(idParams: string): Promise<Response> {
     const workshop = await this.findWorkshopById(Number(idParams) as number);
 
-    if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'User not found!' };
+    if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'Workshop not found!' };
 
     await this.workshopModel.destroy({ where: { workshop_id: Number(idParams) } });
 
     return { status: StatusCodes.OK, response: 'Delete successfully!' };
+  }
+
+  async createNewMechanical(workshopId: string, bodyParams: IMechanical): Promise<Response> {
+    const workshop = await this.findWorkshopById(Number(workshopId) as number);
+
+    if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'Workshop not found!' };
+
+    const result = await this._mechanicalService.createNewMechanical(workshopId, bodyParams);
+
+    return { status: result.status, response: result.error ? result.error : result.response };
   }
 }
