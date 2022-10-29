@@ -60,7 +60,7 @@ Services.init({
     },
   },
   status: {
-    type: DataTypes.ENUM('OPEN', 'PROGRESS', 'CLOSED'),
+    type: DataTypes.ENUM('OPEN', 'PROGRESS', 'COMPLETED'),
     allowNull: false,
   },
 }, {

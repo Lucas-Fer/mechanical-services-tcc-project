@@ -46,7 +46,7 @@ module.exports = {
         },
       },
       status: {
-        type: Sequelize.ENUM('OPEN', 'PROGRESS', 'CLOSED'),
+        type: Sequelize.ENUM('OPEN', 'PROGRESS', 'COMPLETED'),
       },
     });
   },

@@ -13,6 +13,6 @@ servicesRoutes.put('/update-by-user/:id', (req, res) => servicesController.updat
 servicesRoutes.put('/update-by-manager/:id', (req, res) => servicesController.updateByManager(req, res));
 servicesRoutes.delete('/delete/:id', (req, res) => servicesController.delete(req, res));
 servicesRoutes.get('/:id', (req, res) => servicesController.getUserServices(req, res));
-
+servicesRoutes.get('/mechanical/:id', (req, res) => servicesController.getAllByMechanical(req, res));
 
 export default servicesRoutes;

@@ -1,7 +1,7 @@
 enum StatusService {
   OPEN = 'OPEN',
   PROGRESS = 'PROGRESS',
-  CLOSED = 'CLOSED',
+  COMPLETED = 'COMPLETED',
 }
 
 export default StatusService;

@@ -6,6 +6,7 @@ import UsersModel from "../database/models/Users.model";
 import StatusService from "../@types/StatusService.enum";
 import MechanicalService from "./Mechanical.services";
 import Mechanical from "../database/models/Mechanical.model";
+import IMechanical from "../@types/Mechanical.interface";
 
 type Response = {
   status: number;
@@ -56,6 +57,22 @@ export default class Service {
     return findServiceById;
   }
 
+  async getAllServicesByMechanical(mechanicalId: string): Promise<Response> {
+    const findMechanicalById = await this._mechanicalService.
+      findMechanicalById(Number(mechanicalId) as number);
+
+    if (!findMechanicalById) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' };
+
+    const findAllServicesByMechanical = await this.tableService.findAll({
+      where: {
+        mechanical_id: Number(mechanicalId),
+      }
+    });
+
+    return { status: StatusCodes.OK, response: findAllServicesByMechanical };
+
+  }
+
   async updateServiceByUser(idService: string, bodyParams: IService): Promise<Response> {
     const service = await this.getServiceById(Number(idService) as number);
 
@@ -91,6 +108,22 @@ export default class Service {
     const newServiceObject = {
       mechanical_id: Number(bodyParams.mechanicalId),
       status: StatusService.PROGRESS,
+    }
+
+    await this.tableService.update(newServiceObject, {
+      where: { service_id: Number(idService) }
+    });
+
+    return { status: StatusCodes.CREATED, response: 'Update successfully!' };
+  }
+
+  async updateServiceByMechanical(idService: string): Promise<Response> {
+    const service = await this.getServiceById(Number(idService) as number);
+
+    if (!service) return { status: StatusCodes.NOT_FOUND, error: 'Service not found' };
+
+    const newServiceObject = {
+      status: StatusService.COMPLETED,
     }
 
     await this.tableService.update(newServiceObject, {
