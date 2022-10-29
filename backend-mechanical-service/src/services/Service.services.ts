@@ -117,12 +117,18 @@ export default class Service {
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };
   }
 
-  async updateServiceByMechanical(idService: string): Promise<Response> {
+  async updateServiceByMechanical(idService: string, bodyParams: IService): Promise<Response> {
     const service = await this.getServiceById(Number(idService) as number);
+    const mechanical = await this._mechanicalService.findMechanicalById(bodyParams.mechanicalId as number);
 
     if (!service) return { status: StatusCodes.NOT_FOUND, error: 'Service not found' };
+    if (!mechanical) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' };
+    if (service.mechanical_id !== bodyParams.mechanicalId) return {
+      status: StatusCodes.UNAUTHORIZED, error: 'This service is not yours'
+    };
 
     const newServiceObject = {
+      mechanical_id: Number(bodyParams.mechanicalId),
       status: StatusService.COMPLETED,
     }
 

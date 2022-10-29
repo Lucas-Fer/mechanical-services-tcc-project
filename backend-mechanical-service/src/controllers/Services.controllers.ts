@@ -43,6 +43,15 @@ export default class ServiceController {
     return res.status(status).json(response ? response : error);
   }
 
+  public async updateByMechanical(req: Request, res: Response): Promise<Response> {
+    const { params: { id }, body } = req;
+
+    const { status, response, error } = await this.userService
+      .updateServiceByMechanical(id as string, body as IService);
+
+    return res.status(status).json(response ? response : error);
+  }
+
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
 
