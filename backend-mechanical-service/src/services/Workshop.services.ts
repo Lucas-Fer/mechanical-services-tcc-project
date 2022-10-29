@@ -1,8 +1,6 @@
-import Mechanical from "../database/models/Mechanical.model";
 import StatusCodes from "../@types/StatusCodes.enum";
-import IWorkshop from "../@types/Workshop.interface";
+import IWorkshop, { IWorkshopLogin } from "../@types/Workshop.interface";
 import WorkshopModel from "../database/models/Workshops.model";
-import MechanicalService from "./Mechanical.services";
 import UserRole from "../@types/UserRole.enum";
 
 type Response = {
@@ -56,7 +54,7 @@ export default class WorkshopService {
     return { status: StatusCodes.CREATED, response: result };
   }
 
-  async loginWorkshop(params: IWorkshop): Promise<Response> {
+  async loginWorkshop(params: IWorkshopLogin): Promise<Response> {
     const workshop = await this.findWorkshopByEmail(params.email);
 
     if (!workshop) return { status: StatusCodes.NOT_FOUND, error: 'Workshop not found!' };

@@ -1,11 +1,14 @@
 import MechanicalStatus from "./MechanicalStatus.enum";
 
-export default interface IMechanical {
+export default interface IMechanical extends IMechanicalLogin {
   id?: number;
   name: string;
   phone: string;
-  email: string;
-  password: string;
   autonomous: boolean;
   workstatus: MechanicalStatus;
 };
+
+export interface IMechanicalLogin {
+  email: string;
+  password: string;
+}

@@ -1,5 +1,5 @@
 import StatusCodes from "../@types/StatusCodes.enum";
-import IMechanical from "../@types/Mechanical.interface";
+import IMechanical, { IMechanicalLogin } from "../@types/Mechanical.interface";
 import Mechanical from "../database/models/Mechanical.model";
 import UserRole from "../@types/UserRole.enum";
 import WorkshopService from "../services/Workshop.services";
@@ -65,7 +65,7 @@ export default class MechanicalService {
     return { status: StatusCodes.CREATED, response: result };
   }
 
-  async loginMechanical(params: IMechanical): Promise<Response> {
+  async loginMechanical(params: IMechanicalLogin): Promise<Response> {
     const mechanical = await this.findMechanicalByEmail(params.email as string);
 
     if (!mechanical) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' };

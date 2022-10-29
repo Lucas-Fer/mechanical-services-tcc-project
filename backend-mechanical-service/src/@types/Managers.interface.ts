@@ -1,8 +1,11 @@
 
-export default interface IManager {
+export default interface IManager extends IManagerLogin {
   id?: number;
   name: string;
-  email: string;
-  password: string;
   workshopId: number;
 };
+
+export interface IManagerLogin {
+  email: string;
+  password: string;
+}
