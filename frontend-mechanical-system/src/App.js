@@ -1,17 +1,17 @@
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
-
 import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+
 import Login from './pages/Login';
-import Home from './pages/Home';
+import { SystemProvider } from './context/SystemContext';
 
 function App() {
   return (
-    <BrowserRouter>
+    <SystemProvider>
       <Switch>
+        <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/" component={Home} />
       </Switch>
-    </BrowserRouter>
+    </SystemProvider>
   );
 }
 
