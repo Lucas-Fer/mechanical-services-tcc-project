@@ -91,8 +91,6 @@ export default class MechanicalService {
       mechanical_name: bodyParams.name,
       mechanical_email: bodyParams.email,
       mechanical_password: bodyParams.password,
-      mechanical_phone: bodyParams.phone,
-      autonomous: bodyParams.autonomous,
     }, {
       where: { mechanical_id: Number(idParams) }
     });

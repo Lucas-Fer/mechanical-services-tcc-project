@@ -33,6 +33,16 @@ export default class ManagersService {
     return manager;
   }
 
+  async findManagerById(id: number) {
+    const manager = await this.managerModel.findOne({
+      where: {
+        manager_id: id,
+      }
+    });
+
+    return manager;
+  }
+
   async loginManager(params: IManagerLogin): Promise<Response> {
     const manager = await this.findManagerByEmail(params.email as string);
 
@@ -69,7 +79,33 @@ export default class ManagersService {
     const result = await this.managerModel.create(newManagerObject);
 
     return { status: StatusCodes.CREATED, response: result };
+  }
 
+  async updateManager(managerId: string, bodyParams: IManager): Promise<Response> {
+    const findManager = await this.findManagerById(Number(managerId) as number);
+
+    if (!findManager) return { status: StatusCodes.NOT_FOUND, error: 'Manager not found' };
+
+    await this.managerModel.update({
+      manager_name: bodyParams.name,
+      manager_email: bodyParams.email,
+      manager_password: bodyParams.password,
+    }, {
+      where: { manager_id: Number(managerId) }
+    });
+
+    return { status: StatusCodes.CREATED, response: 'Update successfully!' };
+  }
+
+
+  async deleteManager(idParams: string): Promise<Response> {
+    const manager = await this.findManagerById(Number(idParams) as number);
+
+    if (!manager) return { status: StatusCodes.NOT_FOUND, error: 'Manager not found' };
+
+    await this.managerModel.destroy({ where: { manager_id: Number(idParams) } });
+
+    return { status: StatusCodes.OK, response: 'Delete successfully!' };
   }
 
 }

@@ -9,5 +9,7 @@ const managersController = new ManagerController(new ManagersService(ManagersMod
 
 managersRoute.get('/', (req, res) => managersController.getAll(req, res));
 managersRoute.post('/login', (req, res) => managersController.login(req, res));
+managersRoute.put('/update/:id', (req, res) => managersController.update(req, res));
+managersRoute.delete('/delete/:id', (req, res) => managersController.delete(req, res));
 
 export default managersRoute;
