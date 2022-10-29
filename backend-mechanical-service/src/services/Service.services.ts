@@ -4,6 +4,8 @@ import Services from "../database/models/Services.model";
 import UserService from "./Users.services";
 import UsersModel from "../database/models/Users.model";
 import StatusService from "../@types/StatusService.enum";
+import MechanicalService from "./Mechanical.services";
+import Mechanical from "../database/models/Mechanical.model";
 
 type Response = {
   status: number;
@@ -16,9 +18,11 @@ type Object = {
 }
 export default class Service {
   private _userService: UserService;
+  private _mechanicalService: MechanicalService;
 
   constructor(private tableService: typeof Services) {
     this._userService = new UserService(UsersModel);
+    this._mechanicalService = new MechanicalService(Mechanical);
   }
 
   async getAllServices(): Promise<Response> {
@@ -52,8 +56,8 @@ export default class Service {
     return findServiceById;
   }
 
-  async updateService(idParams: string, bodyParams: IService): Promise<Response> {
-    const service = await this.getServiceById(Number(idParams) as number);
+  async updateServiceByUser(idService: string, bodyParams: IService): Promise<Response> {
+    const service = await this.getServiceById(Number(idService) as number);
 
     if (!service) return { status: StatusCodes.NOT_FOUND, error: 'Service not found' };
 
@@ -67,7 +71,30 @@ export default class Service {
     }
 
     await this.tableService.update(newServiceObject, {
-      where: { service_id: idParams }
+      where: { service_id: Number(idService) }
+    });
+
+    return { status: StatusCodes.CREATED, response: 'Update successfully!' };
+  }
+
+  async updateServiceByManager(idService: string, bodyParams: IService): Promise<Response> {
+    if (!bodyParams.mechanicalId) return { status: StatusCodes.BAD_REQUEST, error: 'Mechanical field required!' };
+
+    const service = await this.getServiceById(Number(idService) as number);
+    const findMechanicalById = await this._mechanicalService.
+      findMechanicalById(Number(bodyParams.mechanicalId));
+
+    if (!service) return { status: StatusCodes.NOT_FOUND, error: 'Service not found' };
+    if (!findMechanicalById) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' };
+
+
+    const newServiceObject = {
+      mechanical_id: Number(bodyParams.mechanicalId),
+      status: StatusService.PROGRESS,
+    }
+
+    await this.tableService.update(newServiceObject, {
+      where: { service_id: Number(idService) }
     });
 
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };

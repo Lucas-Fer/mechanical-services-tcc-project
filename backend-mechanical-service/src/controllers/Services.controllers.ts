@@ -17,10 +17,20 @@ export default class ServiceController {
     return res.status(status).json(response ? response : error);
   }
 
-  public async update(req: Request, res: Response): Promise<Response> {
+  public async updateByUser(req: Request, res: Response): Promise<Response> {
     const { params: { id }, body } = req;
 
-    const { status, response, error } = await this.userService.updateService(id as string, body as IService);
+    const { status, response, error } = await this.userService
+      .updateServiceByUser(id as string, body as IService);
+
+    return res.status(status).json(response ? response : error);
+  }
+
+  public async updateByManager(req: Request, res: Response): Promise<Response> {
+    const { params: { id }, body } = req;
+
+    const { status, response, error } = await this.userService
+      .updateServiceByManager(id as string, body as IService);
 
     return res.status(status).json(response ? response : error);
   }

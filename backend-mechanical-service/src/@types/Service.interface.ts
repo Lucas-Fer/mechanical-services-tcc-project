@@ -7,5 +7,6 @@ export default interface IService {
   vehicleModel: string;
   vehicleBrand: string;
   vehicleYear: number;
+  mechanicalId: number;
   status: StatusService;
 }
