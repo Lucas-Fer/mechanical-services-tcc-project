@@ -17,21 +17,31 @@ export default class ManagersService {
     return { status: StatusCodes.OK, response: allManagers };
   }
 
-  async loginManager(params: IManagerLogin): Promise<Response> {
-    const mechanical = await this.findMechanicalByEmail(params.email as string);
-
-    if (!mechanical) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' };
-
-    const validadeMechanical = await this.mechanicalModel.findOne({
+  async findManagerByEmail(email: string) {
+    const manager = await this.managerModel.findOne({
       where: {
-        mechanical_email: params.email,
-        mechanical_password: params.password,
+        manager_email: email,
       }
     });
 
-    if (!validadeMechanical) return { status: StatusCodes.NOT_FOUND, error: 'Incorrect password' };
+    return manager;
+  }
 
-    return { status: StatusCodes.OK, response: validadeMechanical };
+  async loginManager(params: IManagerLogin): Promise<Response> {
+    const manager = await this.findManagerByEmail(params.email as string);
+
+    if (!manager) return { status: StatusCodes.NOT_FOUND, error: 'Manager not found' };
+
+    const validadeManager = await this.managerModel.findOne({
+      where: {
+        manager_email: params.email,
+        manager_password: params.password,
+      }
+    });
+
+    if (!validadeManager) return { status: StatusCodes.NOT_FOUND, error: 'Incorrect password' };
+
+    return { status: StatusCodes.OK, response: validadeManager };
   }
 
 }

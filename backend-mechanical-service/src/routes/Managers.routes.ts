@@ -8,5 +8,6 @@ const managersRoute = Router();
 const managersController = new ManagerController(new ManagersService(ManagersModel));
 
 managersRoute.get('/', (req, res) => managersController.getAll(req, res));
+managersRoute.post('/login', (req, res) => managersController.login(req, res));
 
 export default managersRoute;
