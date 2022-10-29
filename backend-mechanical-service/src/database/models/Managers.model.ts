@@ -1,4 +1,5 @@
 import { DataTypes, Model } from "sequelize";
+import UserRole from "../../@types/UserRole.enum";
 import db from '.';
 import WorkshopModel from "./Workshops.model";
 
@@ -38,6 +39,10 @@ ManagersModel.init({
       model: WorkshopModel,
       key: 'workshop_id',
     },
+  },
+  user_role: {
+    type: DataTypes.ENUM(UserRole.MANAGER),
+    allowNull: true,
   },
 }, {
   modelName: 'managers',

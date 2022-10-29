@@ -1,6 +1,7 @@
 import IUser from "../@types/User.interface";
 import StatusCodes from "../@types/StatusCodes.enum";
 import UsersModel from "../database/models/Users.model";
+import UserRole from "../@types/UserRole.enum";
 
 type Response = {
   status: number;
@@ -47,6 +48,7 @@ export default class UserService {
       user_email: params.email,
       user_password: params.password,
       user_phone: params.phone,
+      user_role: UserRole.CLIENT,
     }
 
     const result = await this.userModel.create(newUserObject);

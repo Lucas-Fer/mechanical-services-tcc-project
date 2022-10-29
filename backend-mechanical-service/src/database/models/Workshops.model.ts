@@ -1,4 +1,5 @@
 import { DataTypes, Model } from "sequelize";
+import UserRole from "../../@types/UserRole.enum";
 import db from '.';
 
 export default class WorkshopModel extends Model {
@@ -7,6 +8,7 @@ export default class WorkshopModel extends Model {
   public workshop_email!: string;
   public workshop_password!: string;
   public workshop_location!: string;
+  public user_role?: string;
 }
 
 WorkshopModel.init({
@@ -31,6 +33,10 @@ WorkshopModel.init({
   workshop_location: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  user_role: {
+    type: DataTypes.ENUM(UserRole.ADMIN),
+    allowNull: true,
   },
 }, {
   modelName: 'workshops',

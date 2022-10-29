@@ -34,6 +34,10 @@ module.exports = {
           key: 'workshop_id',
         },
       },
+      user_role: {
+        type: Sequelize.ENUM('MECHANICAL'),
+        allowNull: true,
+      },
     });
   },
   dow: async (queryInterface, _Sequelize) => {

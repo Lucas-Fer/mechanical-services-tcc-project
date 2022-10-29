@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.STRING(255),
         allowNull: false,
       },
+      user_role: {
+        type: Sequelize.ENUM('ADMIN'),
+        allowNull: true,
+      },
     });
   },
   dow: async (queryInterface, _Sequelize) => {

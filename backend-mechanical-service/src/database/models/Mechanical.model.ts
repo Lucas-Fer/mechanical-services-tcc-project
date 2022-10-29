@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import MechanicalStatus from '../../@types/MechanicalStatus.enum';
 import db from '.';
 import WorkshopModel from './Workshops.model';
+import UserRole from '../../@types/UserRole.enum';
 
 export default class Mechanical extends Model {
   public mechanical_id: number;
@@ -9,7 +10,7 @@ export default class Mechanical extends Model {
   public mechanical_email!: string;
   public mechanical_password!: string;
   public work_status!: MechanicalStatus;
-  public mechanical_workshop: number;
+  public workshop_id: number;
 }
 
 Mechanical.init({
@@ -44,6 +45,10 @@ Mechanical.init({
       model: WorkshopModel,
       key: 'workshop_id',
     },
+  },
+  user_role: {
+    type: DataTypes.ENUM(UserRole.MECHANICAL),
+    allowNull: true,
   },
 }, {
   modelName: 'mechanicals',

@@ -1,6 +1,9 @@
 import StatusCodes from "../@types/StatusCodes.enum";
 import IMechanical from "../@types/Mechanical.interface";
 import Mechanical from "../database/models/Mechanical.model";
+import UserRole from "../@types/UserRole.enum";
+import WorkshopService from "../services/Workshop.services";
+import WorkshopModel from "../database/models/Workshops.model";
 
 type Response = {
   status: number;
@@ -9,7 +12,10 @@ type Response = {
 }
 
 export default class MechanicalService {
-  constructor(private mechanicalModel: typeof Mechanical) { }
+  private _workshopService: WorkshopService;
+  constructor(private mechanicalModel: typeof Mechanical) {
+    this._workshopService = new WorkshopService(WorkshopModel);
+  }
 
   async getAllMechanics(): Promise<Response> {
     const allMechanics = await this.mechanicalModel.findAll();
@@ -38,16 +44,20 @@ export default class MechanicalService {
   }
 
   async createNewMechanical(workshopId: string, params: IMechanical): Promise<Response> {
-    const mechanical = await this.findMechanicalByEmail(params.email);
+    const findMechanical = await this.findMechanicalByEmail(params.email);
+    const findWorkshopById = await this._workshopService
+      .findWorkshopById(Number(workshopId) as number);
 
-    if (mechanical) return { status: StatusCodes.BAD_REQUEST, error: 'Mechanical already exists' };
+    if (findMechanical) return { status: StatusCodes.BAD_REQUEST, error: 'Mechanical already exists' };
+    if (!findWorkshopById) return { status: StatusCodes.NOT_FOUND, error: 'WorkShop not exist!' };
 
     const newMechanicalObject = {
       mechanical_name: params.name,
       mechanical_email: params.email,
       mechanical_password: params.password,
       work_status: params.workstatus,
-      workshop_id: workshopId,
+      workshop_id: Number(workshopId),
+      user_role: UserRole.MECHANICAL,
     }
 
     const result = await this.mechanicalModel.create(newMechanicalObject);

@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import UserRole from '../../@types/UserRole.enum';
 import db from '.';
 
 export default class UsersModel extends Model {
@@ -31,6 +32,10 @@ UsersModel.init({
   user_password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  user_role: {
+    type: DataTypes.ENUM(UserRole.CLIENT),
+    allowNull: true,
   },
 }, {
   modelName: 'users',

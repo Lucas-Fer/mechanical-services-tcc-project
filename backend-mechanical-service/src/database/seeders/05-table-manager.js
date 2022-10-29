@@ -6,12 +6,14 @@ module.exports = {
         manager_email: 'manager1@teste.com',
         manager_password: 'manager123',
         workshop_id: 2,
+        user_role: 'MANAGER',
       },
       {
         manager_name: 'Manager1',
         manager_email: 'manager2@teste.com',
         manager_password: 'manager123',
         workshop_id: 1,
+        user_role: 'MANAGER',
       },
     ], {});
   },

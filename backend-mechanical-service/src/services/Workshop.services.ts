@@ -1,9 +1,9 @@
 import Mechanical from "../database/models/Mechanical.model";
-import IMechanical from "../@types/Mechanical.interface";
 import StatusCodes from "../@types/StatusCodes.enum";
 import IWorkshop from "../@types/Workshop.interface";
 import WorkshopModel from "../database/models/Workshops.model";
 import MechanicalService from "./Mechanical.services";
+import UserRole from "../@types/UserRole.enum";
 
 type Response = {
   status: number;
@@ -12,11 +12,7 @@ type Response = {
 }
 
 export default class WorkshopService {
-  private _mechanicalService: MechanicalService;
-
-  constructor(private workshopModel: typeof WorkshopModel) {
-    this._mechanicalService = new MechanicalService(Mechanical);
-  }
+  constructor(private workshopModel: typeof WorkshopModel) { }
 
   async getAllWorkshops(): Promise<Response> {
     const allWorkshops = await this.workshopModel.findAll();
@@ -52,6 +48,7 @@ export default class WorkshopService {
       workshop_email: params.email,
       workshop_password: params.password,
       workshop_location: params.location,
+      user_role: UserRole.ADMIN,
     }
 
     const result = await this.workshopModel.create(newUserObject);

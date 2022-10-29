@@ -7,6 +7,7 @@ module.exports = {
         mechanical_password: 'mechanical123',
         work_status: 'AVAILABLE',
         workshop_id: 2,
+        user_role: 'MECHANICAL',
       },
       {
         mechanical_name: 'Mechanical1',
@@ -14,6 +15,7 @@ module.exports = {
         mechanical_password: 'mechanical123',
         work_status: 'BUSY',
         workshop_id: 1,
+        user_role: 'MECHANICAL',
       },
     ], {});
   },

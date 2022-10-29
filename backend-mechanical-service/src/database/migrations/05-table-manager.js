@@ -30,6 +30,10 @@ module.exports = {
           key: 'workshop_id',
         },
       },
+      user_role: {
+        type: Sequelize.ENUM('MANAGER'),
+        allowNull: true,
+      },
     });
   },
   dow: async (queryInterface, _Sequelize) => {
