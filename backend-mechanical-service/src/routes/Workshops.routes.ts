@@ -14,5 +14,6 @@ workshopRoute.put('/update/:id', (req, res) => workshopController.update(req, re
 workshopRoute.delete('/delete/:id', (req, res) => workshopController.delete(req, res));
 
 workshopRoute.post('/:id/register-mechanical', (req, res) => workshopController.createMechanical(req, res));
+workshopRoute.post('/:id/register-manager', (req, res) => workshopController.createManager(req, res));
 
 export default workshopRoute;

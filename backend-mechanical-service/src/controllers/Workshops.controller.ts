@@ -4,11 +4,16 @@ import IMechanical from "../@types/Mechanical.interface";
 import IWorkshop from "../@types/Workshop.interface";
 import WorshopService from "../services/Workshop.services";
 import Mechanical from "../database/models/Mechanical.model";
+import ManagersService from "../services/Managers.services";
+import ManagersModel from "../database/models/Managers.model";
+import IManager from "../@types/Managers.interface";
 
 export default class WorkshopController {
   private _mechanicalService: MechanicalService;
+  private _managerService: ManagersService;
   constructor(private workshopService: WorshopService) {
     this._mechanicalService = new MechanicalService(Mechanical);
+    this._managerService = new ManagersService(ManagersModel);
   }
 
   public async getAll(_req: Request, res: Response): Promise<Response> {
@@ -48,6 +53,15 @@ export default class WorkshopController {
 
     const { status, response, error } = await this._mechanicalService
       .createNewMechanical(id as string, body as IMechanical);
+
+    return res.status(status).json(response ? response : error);
+  }
+
+  public async createManager(req: Request, res: Response): Promise<Response> {
+    const { params: { id }, body } = req;
+
+    const { status, response, error } = await this._managerService
+      .createNewManager(id as string, body as IManager);
 
     return res.status(status).json(response ? response : error);
   }
