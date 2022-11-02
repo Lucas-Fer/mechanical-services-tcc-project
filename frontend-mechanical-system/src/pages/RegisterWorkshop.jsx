@@ -13,7 +13,7 @@ import {
 
 export default function RegisterWorkshop() {
 
-  const { setUserInfo, userInfo } = useContext(SystemContext);
+  const { setUserInfo, setUserLogged } = useContext(SystemContext);
 
   let history = useHistory();
 
@@ -21,24 +21,21 @@ export default function RegisterWorkshop() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
-  const [workshopCreated, setWorkshopCreated] = useState(false);
 
   const handleSubmit = async () => {
     try {
       const response = await createWorkshop({ name, email, password, location });
-      setWorkshopCreated(true);
+      setUserLogged(true);
       setUserInfo(response.data);
+      history.push('/workshop/home');
 
     } catch (error) {
-      setWorkshopCreated(false);
+      setUserLogged(false);
       alert(error.response.data)
 
     }
   }
 
-  useEffect(() => {
-    if (workshopCreated) history.push('/workshop/home');
-  }, [workshopCreated])
 
   return (
     <FormStyled>

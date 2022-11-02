@@ -18,7 +18,7 @@ import {
 
 export default function Login() {
 
-  const { setUserInfo, userInfo, setUserLogged } = useContext(SystemContext);
+  const { setUserInfo, setUserLogged } = useContext(SystemContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +50,7 @@ export default function Login() {
       try {
         const response = await loginUser({ email, password });
         setUserLogged(true);
-        setUserInfo(response.data);
+        await setUserInfo(response.data);
         history.push('/user/home');
       } catch (error) {
         setUserLogged(false);
@@ -74,7 +74,7 @@ export default function Login() {
   useEffect(() => {
     setUserLogged(false);
     setUserInfo();
-  }, [])
+  }, []);
 
   const handleClick = (routeParam) => history.push(`/${routeParam}`);
 

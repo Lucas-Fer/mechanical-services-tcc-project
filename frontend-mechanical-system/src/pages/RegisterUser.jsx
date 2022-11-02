@@ -14,14 +14,12 @@ import {
 
 export default function RegisterUser() {
 
-  const { setUserInfo, userInfo } = useContext(SystemContext);
+  const { setUserInfo, userLogged, setUserLogged } = useContext(SystemContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-
-  const [userLogged, setUserLogged] = useState(false);
 
   let history = useHistory();
 

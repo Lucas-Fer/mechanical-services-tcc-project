@@ -7,7 +7,7 @@ import RegisterUser from './pages/RegisterUser';
 import { SystemProvider } from './context/SystemContext';
 import RegisterWorkshop from './pages/RegisterWorkshop';
 import WorkshopHome from './pages/WorkshopHome';
-import Userhome from './pages/Userhome';
+import UserHome from './pages/UserHome';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/register-user" component={RegisterUser} />
         <Route exact path="/register-workshop" component={RegisterWorkshop} />
         <Route exact path="/workshop/home" component={WorkshopHome} />
-        <Route exact path="/user/home" component={Userhome} />
+        <Route exact path="/user/home" component={UserHome} />
       </Switch>
     </SystemProvider>
   );
