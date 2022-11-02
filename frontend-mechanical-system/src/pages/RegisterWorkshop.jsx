@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
-
 import { SystemContext } from '../context/SystemContext';
-import { getAllUser, loginUser } from '../services/userRequest';
-
+import { createWorkshop } from '../services/workshopRequest';
 import {
   ButtonStyled,
   FormStyled,
@@ -13,30 +11,30 @@ import {
   SectionInputStyled
 } from '../styles/Login.styled';
 
-export default function Login() {
+export default function RegisterWorkshop() {
 
   const { setUserInfo, userInfo } = useContext(SystemContext);
 
+  let history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
   const [userLogged, setUserLogged] = useState(false);
-
-  let history = useHistory();
 
   const handleSubmit = async () => {
     try {
-      const response = await loginUser({ email, password });
+      const response = await createWorkshop({ name, email, password, location });
       setUserLogged(true);
       setUserInfo(response.data);
 
     } catch (error) {
       setUserLogged(false);
       alert(error.response.data)
+
     }
   }
-
-
-  const handleClick = (routeParam) => history.push(`/${routeParam}`);
 
   useEffect(() => {
     if (userLogged) history.push('/home');
@@ -50,14 +48,45 @@ export default function Login() {
           color: "#036B52",
           fontWeight: "bold"
         }}>
-          Bem-vindo(a)!
+          Registrar Oficina
         </h3>
+
         <SectionInputStyled>
           <span style={{
             alignSelf: "start",
             color: "gray",
             fontWeight: "bolder"
-          }}>Login</span>
+          }}>Nome da Oficina</span>
+
+          <InputStyled
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </SectionInputStyled>
+
+        <SectionInputStyled>
+          <span style={{
+            alignSelf: "start",
+            color: "gray",
+            fontWeight: "bolder"
+          }}>Localização</span>
+
+          <InputStyled
+            type="text"
+            name="location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </SectionInputStyled>
+
+        <SectionInputStyled>
+          <span style={{
+            alignSelf: "start",
+            color: "gray",
+            fontWeight: "bolder"
+          }}>Email</span>
 
           <InputStyled
             type="text"
@@ -83,20 +112,8 @@ export default function Login() {
         </SectionInputStyled>
 
         <SectionButtonStyled>
-          <ButtonStyled
-            primary
-            onClick={() => handleSubmit()}
-            type="button">Entrar</ButtonStyled>
-
-          <ButtonStyled
-            secondary
-            onClick={() => handleClick("register-user")}
-            type="button">Criar conta</ButtonStyled>
-
-          <ButtonStyled
-            terciary
-            onClick={() => handleClick("register-workshop")}
-            type="button">Registrar oficina</ButtonStyled>
+          <ButtonStyled primary
+            onClick={() => handleSubmit()} type="button">Cadastrar Oficina</ButtonStyled>
         </SectionButtonStyled>
       </MainFormStyled>
     </FormStyled>

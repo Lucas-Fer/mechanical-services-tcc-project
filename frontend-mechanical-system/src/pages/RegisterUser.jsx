@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import { SystemContext } from '../context/SystemContext';
+import { createUser } from '../services/userRequest';
 
 import {
   ButtonStyled,
@@ -11,14 +14,33 @@ import {
 
 export default function RegisterUser() {
 
+  const { setUserInfo, userInfo } = useContext(SystemContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
-  const handleSubmit = () => {
-    alert('legal')
+  const [userLogged, setUserLogged] = useState(false);
+
+  let history = useHistory();
+
+  const handleSubmit = async () => {
+    try {
+      const response = await createUser({ name, email, password, phone });
+      setUserLogged(true);
+      setUserInfo(response.data);
+
+    } catch (error) {
+      setUserLogged(false);
+      alert(error.response.data)
+
+    }
   }
+
+  useEffect(() => {
+    if (userLogged) history.push('/home');
+  }, [userLogged])
 
   return (
     <FormStyled>
