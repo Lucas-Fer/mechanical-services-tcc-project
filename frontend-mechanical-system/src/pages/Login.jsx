@@ -50,7 +50,7 @@ export default function Login() {
       try {
         const response = await loginUser({ email, password });
         setUserLogged(true);
-        await setUserInfo(response.data);
+        setUserInfo(response.data);
         history.push('/user/home');
       } catch (error) {
         setUserLogged(false);

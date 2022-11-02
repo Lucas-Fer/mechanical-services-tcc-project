@@ -10,7 +10,7 @@ export default function WorkshopHome() {
   let history = useHistory();
 
   useEffect(() => {
-    if (!userInfo || !userLogged) history.push(`/`);
+    if (!userInfo || !userLogged) history.push('/');
   }, []);
 
   return (

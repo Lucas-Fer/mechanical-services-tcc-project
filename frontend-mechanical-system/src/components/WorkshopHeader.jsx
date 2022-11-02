@@ -1,21 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { HeaderStyled } from '../styles/WorksopHeader'
+import { HeaderStyled, LinkStyled, NavBarStyled } from '../styles/WorksopHeader.styled'
 
 export default function WorkshopHeader() {
   return (
     <HeaderStyled>
-      <section>
-        <Link to="/workshop/home">Gerenciar Oficina</Link>
-        <Link to="/workshop/home">Listar Serviços</Link>
-        <Link to="/workshop/home">Listar </Link>
-      </section>
+      <NavBarStyled>
+        <LinkStyled borderright to="/workshop/home">Gerenciar Oficina</LinkStyled>
+        <LinkStyled borderright to="/workshop/home">Listar Serviços</LinkStyled>
+      </NavBarStyled>
 
 
-      <div>
-        <span>Workshop Admin</span>
-        <Link to="/">Logout</Link>
-      </div>
+      <NavBarStyled>
+        <LinkStyled borderleft to="/workshop/home">Workshop Admin</LinkStyled>
+        <LinkStyled borderleft to="/">Logout</LinkStyled>
+      </NavBarStyled>
     </HeaderStyled>
   )
 }
