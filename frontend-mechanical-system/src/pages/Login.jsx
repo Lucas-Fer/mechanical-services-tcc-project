@@ -3,44 +3,81 @@ import { useHistory } from 'react-router-dom';
 
 import { SystemContext } from '../context/SystemContext';
 import { getAllUser, loginUser } from '../services/userRequest';
+import { loginWorkshop } from '../services/workshopRequest';
 
 import {
   ButtonStyled,
   FormStyled,
   InputStyled,
   MainFormStyled,
+  OptionStyled,
   SectionButtonStyled,
-  SectionInputStyled
+  SectionInputStyled,
+  SelectStyled
 } from '../styles/Login.styled';
 
 export default function Login() {
 
-  const { setUserInfo, userInfo } = useContext(SystemContext);
+  const { setUserInfo, userInfo, setUserLogged } = useContext(SystemContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userLogged, setUserLogged] = useState(false);
+  const [roleOptionSelected, setRoleOptionSelected] = useState('user');
+
+  const options = [
+    {
+      label: "Usuário padrão",
+      value: "user",
+    },
+    {
+      label: "Oficina (ADMIN)",
+      value: "workshop",
+    },
+    {
+      label: "Mecânico de uma oficina",
+      value: "mechanical",
+    },
+    {
+      label: "Gerente de uma oficina",
+      value: "manager",
+    },
+  ];
 
   let history = useHistory();
 
   const handleSubmit = async () => {
-    try {
-      const response = await loginUser({ email, password });
-      setUserLogged(true);
-      setUserInfo(response.data);
+    if (roleOptionSelected === 'user') {
+      try {
+        const response = await loginUser({ email, password });
+        setUserLogged(true);
+        setUserInfo(response.data);
+        history.push('/user/home');
+      } catch (error) {
+        setUserLogged(false);
+        alert(error.response.data)
+      }
+    }
 
-    } catch (error) {
-      setUserLogged(false);
-      alert(error.response.data)
+    if (roleOptionSelected === 'workshop') {
+      try {
+        const response = await loginWorkshop({ email, password });
+        setUserLogged(true);
+        setUserInfo(response.data);
+        history.push('/workshop/home')
+      } catch (error) {
+        setUserLogged(false);
+        alert(error.response.data)
+      }
     }
   }
 
+  useEffect(() => {
+    setUserLogged(false);
+    setUserInfo();
+  }, [])
 
   const handleClick = (routeParam) => history.push(`/${routeParam}`);
 
-  useEffect(() => {
-    if (userLogged) history.push('/home');
-  }, [userLogged])
 
   return (
     <FormStyled>
@@ -80,6 +117,25 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+        </SectionInputStyled>
+
+        <SectionInputStyled>
+          <span style={{
+            alignSelf: "start",
+            color: "gray",
+            fontWeight: "bolder"
+          }}>Entrar como:</span>
+
+          <SelectStyled value={roleOptionSelected}
+            onChange={(e) => setRoleOptionSelected(e.target.value)}
+          >
+            {options.map((option) => (
+              <OptionStyled
+                value={option.value}
+                key={option.label}
+              >{option.label}</OptionStyled>
+            ))}
+          </SelectStyled>
         </SectionInputStyled>
 
         <SectionButtonStyled>

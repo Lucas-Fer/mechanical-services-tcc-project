@@ -64,7 +64,7 @@ export const ButtonStyled = styled.button`
     cursor: pointer;
   }
 
-  ${props => props.primary && `
+   ${props => props.primary && `
       background: #036B52;
       color: #FFFFFF;
   `};
@@ -78,4 +78,28 @@ export const ButtonStyled = styled.button`
       background: #056CF9;
       color: #FFFFFF;
   `};
+`;
+
+export const SelectStyled = styled.select`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid #036B52;
+  
+  margin: 0.25em 0em;
+  padding: 0.25em 1em;
+  background: #FFFFFF;
+  color: #036B52;
+  width: 106%;
+  height: 3.6875em;
+
+  font-weight: 700;
+
+  &:hover {
+    background: transparent;
+    cursor: pointer;
+  }
+`;
+
+export const OptionStyled = styled.option`
+  font-weight: 700;
 `;

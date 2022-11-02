@@ -21,24 +21,24 @@ export default function RegisterWorkshop() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
-  const [userLogged, setUserLogged] = useState(false);
+  const [workshopCreated, setWorkshopCreated] = useState(false);
 
   const handleSubmit = async () => {
     try {
       const response = await createWorkshop({ name, email, password, location });
-      setUserLogged(true);
+      setWorkshopCreated(true);
       setUserInfo(response.data);
 
     } catch (error) {
-      setUserLogged(false);
+      setWorkshopCreated(false);
       alert(error.response.data)
 
     }
   }
 
   useEffect(() => {
-    if (userLogged) history.push('/home');
-  }, [userLogged])
+    if (workshopCreated) history.push('/workshop/home');
+  }, [workshopCreated])
 
   return (
     <FormStyled>
