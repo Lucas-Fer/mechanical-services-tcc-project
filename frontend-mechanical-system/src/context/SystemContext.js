@@ -8,18 +8,10 @@ export const SystemContext = createContext();
 export function SystemProvider({ children }) {
   const [allUsers, setAllUsers] = useState([]);
 
-  const [loggedUser, setLoggedUser] = useState({
-    name: '',
-    email: '',
-    role: '',
-  });
-
   const contextValue = useMemo(() => ({
-    loggedUser,
-    setLoggedUser,
     allUsers,
     setAllUsers
-  }), [loggedUser]);
+  }), [allUsers, setAllUsers]);
 
   return (
     <SystemContext.Provider value={contextValue}>

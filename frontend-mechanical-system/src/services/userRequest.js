@@ -8,6 +8,5 @@ const LIST_USERS = 'http://localhost:3001/users';
 
 export const getAllUser = async () => {
   const allUsers = await api.get(LIST_USERS);
-
   return allUsers;
 }
