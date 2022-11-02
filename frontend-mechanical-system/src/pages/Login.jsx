@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { SystemContext } from '../context/SystemContext';
 import { getAllUser } from '../services/userRequest';
 
-import Button from 'react-bootstrap/Button';
+import { ButtonStyled, FormStyled, InputStyled, MainFormStyled, SectionButtonStyled, SectionInputStyled } from '../styles/Login.styled';
 
 export default function Login() {
   const { setAllUsers, allUsers } = useContext(SystemContext);
@@ -17,15 +17,39 @@ export default function Login() {
   useEffect(() => updateAllUsers(), []);
 
   return (
-    <>
-      <Button variant="primary">Primary</Button>{' '}
-      <Button variant="secondary">Secondary</Button>{' '}
-      <Button variant="success">Success</Button>{' '}
-      <Button variant="warning">Warning</Button>{' '}
-      <Button variant="danger">Danger</Button>{' '}
-      <Button variant="info">Info</Button>{' '}
-      <Button variant="light">Light</Button>{' '}
-      <Button variant="dark">Dark</Button> <Button variant="link">Link</Button>
-    </>
+    <FormStyled>
+      <MainFormStyled>
+        <h3 style={{
+          textAlign: "center",
+          color: "#036B52",
+          fontWeight: "bold"
+        }}>
+          Bem-vindo(a)!
+        </h3>
+        <SectionInputStyled>
+          <span style={{
+            alignSelf: "start",
+            color: "gray",
+            fontWeight: "bolder"
+          }}>Email</span>
+          <InputStyled type="text" />
+        </SectionInputStyled>
+
+        <SectionInputStyled>
+          <span style={{
+            alignSelf: "start",
+            color: "gray",
+            fontWeight: "bolder"
+          }}>Senha</span>
+          <InputStyled type="text" />
+        </SectionInputStyled>
+
+        <SectionButtonStyled>
+          <ButtonStyled primary>Login</ButtonStyled>
+          <ButtonStyled secondary>Criar conta</ButtonStyled>
+          <ButtonStyled terciary>Registrar oficina</ButtonStyled>
+        </SectionButtonStyled>
+      </MainFormStyled>
+    </FormStyled>
   )
 }
