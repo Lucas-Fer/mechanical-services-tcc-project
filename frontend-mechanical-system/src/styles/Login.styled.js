@@ -31,6 +31,12 @@ export const SectionInputStyled = styled.section`
 
 export const InputStyled = styled.input`
   height: 2.75em;
+  
+  border: 2px solid #036B52;
+  border-radius: 3px;
+
+  padding-left: 1em;
+  font-weight: lighter;
   width: 100%;
 `;
 

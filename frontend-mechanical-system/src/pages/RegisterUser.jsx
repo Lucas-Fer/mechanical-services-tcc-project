@@ -1,8 +1,4 @@
-import React, { useContext, useState } from 'react'
-import { useHistory } from 'react-router-dom';
-
-import { SystemContext } from '../context/SystemContext';
-import { getAllUser, loginUser } from '../services/userRequest';
+import React, { useState } from 'react'
 
 import {
   ButtonStyled,
@@ -13,31 +9,16 @@ import {
   SectionInputStyled
 } from '../styles/Login.styled';
 
-export default function Login() {
-
-  const { setUserInfo, userInfo } = useContext(SystemContext);
+export default function RegisterUser() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userLogged, setUserLogged] = useState(false);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
 
-  let history = useHistory();
-
-  const handleSubmit = async () => {
-    try {
-      const response = await loginUser({ email, password });
-      setUserLogged(true);
-      setUserInfo(response.data);
-
-      console.log(userInfo);
-    } catch (error) {
-      setUserLogged(false);
-      alert(error.response.data)
-    }
+  const handleSubmit = () => {
+    alert('legal')
   }
-
-
-  const handleClick = (routeParam) => history.push(`/${routeParam}`);
 
   return (
     <FormStyled>
@@ -47,14 +28,45 @@ export default function Login() {
           color: "#036B52",
           fontWeight: "bold"
         }}>
-          Bem-vindo(a)!
+          Criar usuário
         </h3>
+
         <SectionInputStyled>
           <span style={{
             alignSelf: "start",
             color: "gray",
             fontWeight: "bolder"
-          }}>Login</span>
+          }}>Nome</span>
+
+          <InputStyled
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </SectionInputStyled>
+
+        <SectionInputStyled>
+          <span style={{
+            alignSelf: "start",
+            color: "gray",
+            fontWeight: "bolder"
+          }}>Telefone</span>
+
+          <InputStyled
+            type="text"
+            name="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </SectionInputStyled>
+
+        <SectionInputStyled>
+          <span style={{
+            alignSelf: "start",
+            color: "gray",
+            fontWeight: "bolder"
+          }}>Email</span>
 
           <InputStyled
             type="text"
@@ -80,19 +92,8 @@ export default function Login() {
         </SectionInputStyled>
 
         <SectionButtonStyled>
-          <ButtonStyled
-            primary
-            onClick={() => handleSubmit()}
-            type="button">Entrar</ButtonStyled>
-
-          <ButtonStyled
-            secondary
-            onClick={() => handleClick("register-user")}
-            type="button">Criar conta</ButtonStyled>
-
-          <ButtonStyled
-            terciary
-            type="button">Registrar oficina</ButtonStyled>
+          <ButtonStyled primary
+            onClick={() => handleSubmit()} type="button">Cadastrar Usuário</ButtonStyled>
         </SectionButtonStyled>
       </MainFormStyled>
     </FormStyled>
