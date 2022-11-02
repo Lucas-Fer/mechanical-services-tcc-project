@@ -52,3 +52,4 @@ ManagersModel.init({
 });
 
 ManagersModel.belongsTo(WorkshopModel, { foreignKey: 'workshop_id' });
+WorkshopModel.hasMany(ManagersModel, { foreignKey: 'manager_id' });

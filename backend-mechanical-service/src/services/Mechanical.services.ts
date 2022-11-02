@@ -107,4 +107,16 @@ export default class MechanicalService {
 
     return { status: StatusCodes.OK, response: 'Delete successfully!' };
   }
+
+  async findWorkshopMechanicals(id: string): Promise<Response> {
+    const mechanicals = await this.mechanicalModel.findAll({
+      include: [{
+        model: WorkshopModel,
+        required: true,
+        where: { workshop_id: Number(id) }
+      }]
+    });
+
+    return { status: StatusCodes.OK, response: mechanicals };
+  }
 }

@@ -108,4 +108,15 @@ export default class ManagersService {
     return { status: StatusCodes.OK, response: 'Delete successfully!' };
   }
 
+  async findWorkshopManagers(id: string): Promise<Response> {
+    const managers = await this.managerModel.findAll({
+      include: [{
+        model: WorkshopModel,
+        required: true,
+        where: { workshop_id: Number(id) }
+      }]
+    });
+
+    return { status: StatusCodes.OK, response: managers };
+  }
 }

@@ -58,3 +58,4 @@ Mechanical.init({
 });
 
 Mechanical.belongsTo(WorkshopModel, { foreignKey: 'workshop_id' });
+WorkshopModel.hasMany(Mechanical, { foreignKey: 'mechanical_id' });

@@ -22,6 +22,20 @@ export default class WorkshopController {
     return res.status(status).json(response);
   }
 
+  public async getAllWorkshopManagers(req: Request, res: Response): Promise<Response> {
+    const { params: { id } } = req;
+    const { status, response } = await this._managerService.findWorkshopManagers(id as string);
+
+    return res.status(status).json(response);
+  }
+
+  public async getAllWorkshopMechanicals(req: Request, res: Response): Promise<Response> {
+    const { params: { id } } = req;
+    const { status, response } = await this._mechanicalService.findWorkshopMechanicals(id as string);
+
+    return res.status(status).json(response);
+  }
+
   public async create(req: Request, res: Response): Promise<Response> {
     const { status, response, error } = await this.workshopService.createNewWorkShop(req.body as IWorkshop);
 
