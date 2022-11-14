@@ -78,6 +78,14 @@ export const ButtonStyled = styled.button`
       background: #056CF9;
       color: #FFFFFF;
   `};
+
+   ${props => props.primaryWorkshop && `
+      &:hover {
+      background: #036B52;
+      color: #FFFFFF;
+      cursor: pointer;
+  }
+  `};
 `;
 
 export const SelectStyled = styled.select`

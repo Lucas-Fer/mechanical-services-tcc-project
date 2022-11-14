@@ -2,30 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import ListWorkshopManagers from '../components/ListWorkshopManagers';
 import ListWorkshopMechanicals from '../components/ListWorkshopMechanicals';
+import RegisterEmployeeWorkshop from '../components/RegisterEmployeeWorkshop';
 import WorkshopHeader from '../components/WorkshopHeader'
 import { SystemContext } from '../context/SystemContext';
 import { getAllWorkshopManagers, getAllWorkshopMechanicals } from '../services/workshopRequest';
-import { ButtonStyled, FormStyled, InputStyled, MainFormStyled, OptionStyled, SectionButtonStyled, SectionInputStyled, SelectStyled } from '../styles/Login.styled';
-import { TableHeadStyled, TableStyled, TBodyStyled, THStyled, TRStyled } from '../styles/WokrshopHome.styled';
 
-const options = [
-  {
-    label: "Usuário padrão",
-    value: "user",
-  },
-  {
-    label: "Oficina (ADMIN)",
-    value: "workshop",
-  },
-  {
-    label: "Mecânico de uma oficina",
-    value: "mechanical",
-  },
-  {
-    label: "Gerente de uma oficina",
-    value: "manager",
-  },
-];
+import { TableStyled, THStyled, TRStyled } from '../styles/WokrshopHome.styled';
+
 export default function WorkshopHome() {
 
   const { userInfo, userLogged } = useContext(SystemContext);
@@ -56,6 +39,7 @@ export default function WorkshopHome() {
   return (
     <>
       <WorkshopHeader />
+      <RegisterEmployeeWorkshop />
       <TableStyled>
         <h2 style={{ color: 'gray' }}>Funcionários da Oficina</h2>
         <thead>
