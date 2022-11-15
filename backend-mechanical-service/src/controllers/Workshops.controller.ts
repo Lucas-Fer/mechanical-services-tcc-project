@@ -79,4 +79,17 @@ export default class WorkshopController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  async findWorkshopEmployees(req: Request, res: Response): Promise<Response> {
+    const mechanicals = await this._mechanicalService.findWorkshopMechanicals(req.params.id);
+    const manager = await this._managerService.findWorkshopManagers(req.params.id);
+
+    const result = {
+      mechanicals,
+      manager
+    }
+
+    return res.status(200).json(result);
+
+  }
 }

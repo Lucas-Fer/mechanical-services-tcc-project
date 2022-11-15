@@ -55,7 +55,7 @@ export default class MechanicalService {
       mechanical_name: params.name,
       mechanical_email: params.email,
       mechanical_password: params.password,
-      work_status: params.workstatus,
+      work_status: 'AVAILABLE',
       workshop_id: Number(workshopId),
       user_role: UserRole.MECHANICAL,
     }

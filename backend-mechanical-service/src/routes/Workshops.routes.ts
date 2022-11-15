@@ -15,6 +15,7 @@ workshopRoute.delete('/delete/:id', (req, res) => workshopController.delete(req,
 
 workshopRoute.get('/:id/workshop-managers', (req, res) => workshopController.getAllWorkshopManagers(req, res));
 workshopRoute.get('/:id/workshop-mechanicals', (req, res) => workshopController.getAllWorkshopMechanicals(req, res));
+workshopRoute.get('/:id/workshop-employees', (req, res) => workshopController.findWorkshopEmployees(req, res));
 
 workshopRoute.post('/:id/register-mechanical', (req, res) => workshopController.createMechanical(req, res));
 workshopRoute.post('/:id/register-manager', (req, res) => workshopController.createManager(req, res));

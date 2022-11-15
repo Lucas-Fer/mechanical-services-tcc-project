@@ -2,6 +2,10 @@ import StatusCodes from "../@types/StatusCodes.enum";
 import IWorkshop, { IWorkshopLogin } from "../@types/Workshop.interface";
 import WorkshopModel from "../database/models/Workshops.model";
 import UserRole from "../@types/UserRole.enum";
+import Mechanical from "../database/models/Mechanical.model";
+import ManagersModel from "../database/models/Managers.model";
+import MechanicalService from "./Mechanical.services";
+import ManagersService from "./Managers.services";
 
 type Response = {
   status: number;
