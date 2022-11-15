@@ -5,7 +5,7 @@ import ListWorkshopMechanicals from '../components/ListWorkshopMechanicals';
 import RegisterEmployeeWorkshop from '../components/RegisterEmployeeWorkshop';
 import WorkshopHeader from '../components/WorkshopHeader'
 import { SystemContext } from '../context/SystemContext';
-import { getAllWorkshopManagers, getAllWorkshopMechanicals } from '../services/workshopRequest';
+import { createNewManager, createNewMechanical, getAllWorkshopManagers, getAllWorkshopMechanicals } from '../services/workshopRequest';
 
 import { TableStyled, THStyled, TRStyled } from '../styles/WokrshopHome.styled';
 
@@ -17,6 +17,16 @@ export default function WorkshopHome() {
 
   const [workshopManagers, setWorkshopManagers] = useState([]);
   const [workshopMechanicals, setWorkshopMechanicals] = useState([]);
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    roleOptionSelected: 'mechanical',
+  });
+
+  const handleChange = ({ target: { value, name } }) => {
+    setUserData((prevUser) => ({ ...prevUser, [name]: value }));
+  };
 
   const getWorkshopEmployees = async (workshopId) => {
     try {
@@ -31,20 +41,48 @@ export default function WorkshopHome() {
     }
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (userData.roleOptionSelected === 'mechanical') {
+      try {
+        const data = await createNewMechanical(userData, userInfo.workshop_id);
+        getWorkshopEmployees(userInfo.workshop_id);
+        console.log(data);
+      } catch (error) {
+        alert(error.response.data);
+      }
+    }
+
+    if (userData.roleOptionSelected === 'manager') {
+      try {
+        const data = await createNewManager(userData, userInfo.workshop_id);
+        getWorkshopEmployees(userInfo.workshop_id);
+        console.log(data);
+      } catch (error) {
+        alert(error.response.data);
+      }
+    }
+  }
+
   useEffect(() => {
     if (!userInfo || !userLogged) history.push('/');
     getWorkshopEmployees(userInfo.workshop_id);
   }, []);
 
+
+
   return (
     <>
       <WorkshopHeader />
-      <RegisterEmployeeWorkshop />
+      <RegisterEmployeeWorkshop
+        handleSubmit={handleSubmit}
+        userData={userData}
+        handleChange={handleChange}
+      />
       <TableStyled>
         <h2 style={{ color: 'gray' }}>Funcionários da Oficina</h2>
         <thead>
           <TRStyled>
-            <THStyled th sm>#</THStyled>
             <THStyled th lg>Name</THStyled>
             <THStyled th lg>Email</THStyled>
             <THStyled th lg>Cargo</THStyled>
@@ -60,7 +98,7 @@ export default function WorkshopHome() {
 
           {workshopMechanicals.map((mechanical, index) => <ListWorkshopMechanicals
             mechanicalData={mechanical}
-            index={index + 1}
+            index={index}
           />)}
         </tbody>
       </TableStyled>

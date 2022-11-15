@@ -4,11 +4,10 @@ import { THStyled, TRStyled } from '../styles/WokrshopHome.styled'
 export default function ListWorkshopManagers({ managerData, index }) {
   return (
     <TRStyled key={managerData.manager_email}>
-      <THStyled sm>{index}</THStyled>
       <THStyled lg>{managerData.manager_name}</THStyled>
       <THStyled lg>{managerData.manager_email}</THStyled>
       <THStyled lg>{managerData.user_role}</THStyled>
-      <THStyled md><button>Excluir</button></THStyled>
+      <THStyled md>Excluir</THStyled>
     </TRStyled>
   )
 }

@@ -33,3 +33,19 @@ export const getAllWorkshopMechanicals = async (workshopId) => {
 
   return workshop;
 }
+
+export const createNewMechanical = async (mechanicalData, workshopId) => {
+  const CREATE_MECHANICAL = `http://localhost:3001/workshops/${workshopId}/register-mechanical/`;
+
+  const workshop = await api.post(CREATE_MECHANICAL, mechanicalData);
+
+  return workshop;
+}
+
+export const createNewManager = async (managerData, workshopId) => {
+  const CREATE_MANAGER = `http://localhost:3001/workshops/${workshopId}/register-manager/`;
+
+  const workshop = await api.post(CREATE_MANAGER, managerData);
+
+  return workshop;
+}

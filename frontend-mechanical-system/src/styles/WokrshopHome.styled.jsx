@@ -21,7 +21,7 @@ export const TRStyled = styled.tr`
   margin-top: 1rem;
 `;
 
-export const THStyled = styled.tr`
+export const THStyled = styled.td`
   display: flex;
   width: 100%;
 

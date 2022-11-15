@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
+
 import { ButtonStyled } from '../styles/Login.styled'
 import { DivInputStyled, FormStyled, InputStyled, OptionStyled, SectionInputStyled, SelectStyled } from '../styles/RegisterEmployeeWorkshop'
 
-export default function RegisterEmployeeWorkshop() {
 
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [roleOptionSelected, setRoleOptionSelected] = useState('mechanical');
+export default function RegisterEmployeeWorkshop({
+  handleSubmit,
+  userData,
+  handleChange
+}) {
 
   const options = [
     {
@@ -21,7 +22,7 @@ export default function RegisterEmployeeWorkshop() {
   ];
 
   return (
-    <FormStyled>
+    <FormStyled onSubmit={handleSubmit}>
       <div>
         <h2 style={{ color: 'gray' }}>Registrar funcionários</h2>
       </div>
@@ -30,20 +31,20 @@ export default function RegisterEmployeeWorkshop() {
         <DivInputStyled>
           <h3 style={{ color: 'green' }}>Nome</h3>
           <InputStyled
-            value={name}
+            value={userData.name}
             type="text"
             name="name"
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleChange}
           />
         </DivInputStyled>
 
         <DivInputStyled>
           <h3 style={{ color: 'green' }}>Email</h3>
           <InputStyled
-            type="text"
+            type="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={userData.email}
+            onChange={handleChange}
           />
         </DivInputStyled>
 
@@ -52,16 +53,18 @@ export default function RegisterEmployeeWorkshop() {
           <InputStyled
             type="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={userData.password}
+            onChange={handleChange}
           />
         </DivInputStyled>
 
         <DivInputStyled>
           <h3 style={{ color: 'green' }}>Tipo</h3>
           <SelectStyled
-            value={roleOptionSelected}
-            onChange={(e) => setRoleOptionSelected(e.target.value)}>
+            value={userData.roleOptionSelected}
+            onChange={handleChange}
+            name="roleOptionSelected"
+          >
 
             {options.map((option) => (
               <OptionStyled
@@ -73,7 +76,11 @@ export default function RegisterEmployeeWorkshop() {
         </DivInputStyled>
 
         <DivInputStyled>
-          <ButtonStyled primaryWorkshop>Cadastrar</ButtonStyled>
+          <ButtonStyled
+            primaryWorkshop
+            type="submit"
+          >Cadastrar
+          </ButtonStyled>
         </DivInputStyled>
       </SectionInputStyled>
     </FormStyled>
