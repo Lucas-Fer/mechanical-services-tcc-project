@@ -159,7 +159,13 @@ export default class Service {
 
     if (!findUserById) return { status: StatusCodes.NOT_FOUND, error: 'User not found' }
 
-    const result = await this.tableService.findAll({ where: { user_id: Number(idParams) } });
+    const result = await this.tableService.findAll({
+      where: { user_id: Number(idParams) },
+      include: [{
+        model: UsersModel,
+        required: true,
+      }]
+    });
 
     return { status: StatusCodes.OK, response: result };
   }
