@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 
 import { CardItem, CardItemStatus, CardItemWorkshop, CartItemInfo } from '../styles/Service.styled'
 
@@ -18,9 +18,7 @@ export default function ServiceCard({ service }) {
       </CardItemStatus>
 
       <CardItemWorkshop>
-        <div>
-          <div>{service.user.user_address}</div>
-        </div>
+        <div style={{ fontWeight: 'bolder' }}>{service.user.user_address}</div>
 
         <span>{service.vehicle_model}, {service.vehicle_brand} - {service.vehicle_year}</span>
       </CardItemWorkshop>

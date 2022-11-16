@@ -89,10 +89,10 @@ export const CardItemWorkshop = styled.div`
   width: 35%;
   height: 99%;
   color: #036B52;
-  font-weight: bolder;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 0.5rem;
 `;

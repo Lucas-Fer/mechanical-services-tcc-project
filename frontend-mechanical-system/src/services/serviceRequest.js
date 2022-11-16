@@ -17,3 +17,10 @@ export const getAllServices = async () => {
 
   return services;
 }
+
+export const getserviceByUser = async (userId) => {
+  const LIST_USER_SERVICES = `/services/${userId}`
+
+  const userServices = await api.get(LIST_USER_SERVICES);
+  return userServices;
+}

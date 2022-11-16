@@ -20,12 +20,13 @@ export default function RegisterUser() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
 
   let history = useHistory();
 
   const handleSubmit = async () => {
     try {
-      const response = await createUser({ name, email, password, phone });
+      const response = await createUser({ name, email, password, phone, address });
       setUserLogged(true);
       setUserInfo(response.data);
 
@@ -93,6 +94,22 @@ export default function RegisterUser() {
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+        </SectionInputStyled>
+
+        <SectionInputStyled>
+          <span style={{
+            alignSelf: "start",
+            color: "gray",
+            fontWeight: "bolder"
+          }}>Endereço</span>
+
+          <InputStyled
+            type="text"
+            name="address"
+            placeholder='Rua Exemplo, Bairro Exemplo, Número Exemplo'
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
           />
         </SectionInputStyled>
 
