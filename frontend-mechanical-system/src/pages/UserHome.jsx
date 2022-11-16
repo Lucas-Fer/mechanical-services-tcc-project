@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import UserHeader from '../components/UserHeader'
 import { SystemContext } from '../context/SystemContext';
 import { createService } from '../services/serviceRequest';
@@ -7,7 +8,8 @@ import { DivInputStyled, FormStyled, InputStyled, SectionInputStyled } from '../
 
 export default function UserHome() {
 
-  const { userInfo, userLogged } = useContext(SystemContext);
+  const { userInfo } = useContext(SystemContext);
+  let history = useHistory();
 
   const [serviceData, setServiceData] = useState({
     userId: 0,
@@ -27,7 +29,7 @@ export default function UserHome() {
     try {
       const { data } = await createService(serviceData);
       console.log(data);
-
+      history.push('/services');
     } catch (error) {
       alert(error.response.data)
     }

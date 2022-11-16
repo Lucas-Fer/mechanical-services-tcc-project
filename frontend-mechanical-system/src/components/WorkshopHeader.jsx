@@ -6,7 +6,7 @@ export default function WorkshopHeader() {
     <HeaderStyled>
       <NavBarStyled>
         <LinkStyled borderright to="/workshop/home">Gerenciar Oficina</LinkStyled>
-        <LinkStyled borderright to="/workshop/home">Listar Serviços</LinkStyled>
+        <LinkStyled borderright to="/services">Listar Serviços</LinkStyled>
       </NavBarStyled>
 
 

@@ -10,3 +10,10 @@ export const createService = async (body) => {
 
   return newUser;
 }
+
+export const getAllServices = async () => {
+  const LIST_SERVICES = '/services/'
+  const services = await api.get(LIST_SERVICES);
+
+  return services;
+}

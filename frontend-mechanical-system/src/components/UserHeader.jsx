@@ -6,7 +6,7 @@ export default function UserHeader() {
     <HeaderStyled>
       <NavBarStyled>
         <LinkStyled borderright to="/user/home">Home</LinkStyled>
-        <LinkStyled borderright to="/user/home">Meus Serviços</LinkStyled>
+        <LinkStyled borderright to="/services">Serviços</LinkStyled>
       </NavBarStyled>
 
 

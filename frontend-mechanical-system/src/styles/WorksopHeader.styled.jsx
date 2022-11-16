@@ -5,10 +5,13 @@ export const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: -8px;
 
   height: 5rem;
   width: 100%;
   background: #036B52;
+  border: 3px solid gray;
+  border-radius: 5px;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 400;

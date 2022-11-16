@@ -8,6 +8,7 @@ import { SystemProvider } from './context/SystemContext';
 import RegisterWorkshop from './pages/RegisterWorkshop';
 import WorkshopHome from './pages/WorkshopHome';
 import UserHome from './pages/UserHome';
+import Services from './pages/Services';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/register-workshop" component={RegisterWorkshop} />
         <Route exact path="/workshop/home" component={WorkshopHome} />
         <Route exact path="/user/home" component={UserHome} />
+        <Route exact path="/services" component={Services} />
       </Switch>
     </SystemProvider>
   );
