@@ -27,7 +27,12 @@ export default class Service {
   }
 
   async getAllServices(): Promise<Response> {
-    const allServices = await this.tableService.findAll();
+    const allServices = await this.tableService.findAll({
+      include: [{
+        model: UsersModel,
+        required: true,
+      }]
+    });
 
     return { status: StatusCodes.OK, response: allServices };
   }

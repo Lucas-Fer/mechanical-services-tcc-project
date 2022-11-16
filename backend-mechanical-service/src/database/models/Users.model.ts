@@ -37,6 +37,10 @@ UsersModel.init({
     type: DataTypes.ENUM(UserRole.CLIENT),
     allowNull: true,
   },
+  user_address: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 }, {
   modelName: 'users',
   underscored: true,

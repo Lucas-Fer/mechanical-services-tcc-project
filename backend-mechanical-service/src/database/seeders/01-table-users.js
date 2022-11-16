@@ -7,6 +7,7 @@ module.exports = {
         user_email: 'user1@teste.com',
         user_password: 'user123',
         user_role: 'CLIENT',
+        user_address: 'Rua tal, Bairro Tal, 3257',
       },
       {
         user_name: 'User2',
@@ -14,6 +15,7 @@ module.exports = {
         user_email: 'user2@teste.com',
         user_password: 'user123',
         user_role: 'CLIENT',
+        user_address: 'Rua tal2, Bairro Tal2, 3123',
       },
     ], {});
   },

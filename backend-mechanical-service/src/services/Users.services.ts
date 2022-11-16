@@ -48,6 +48,7 @@ export default class UserService {
       user_email: params.email,
       user_password: params.password,
       user_phone: params.phone,
+      user_address: params.address,
       user_role: UserRole.CLIENT,
     }
 

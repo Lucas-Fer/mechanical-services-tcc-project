@@ -27,6 +27,10 @@ module.exports = {
         type: Sequelize.ENUM('CLIENT'),
         allowNull: true,
       },
+      user_address: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
+      },
     });
   },
   dow: async (queryInterface, _Sequelize) => {
