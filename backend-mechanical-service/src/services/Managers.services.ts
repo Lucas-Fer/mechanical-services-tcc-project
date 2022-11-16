@@ -65,7 +65,7 @@ export default class ManagersService {
     const findWorkshopById = await this._workshopService
       .findWorkshopById(Number(workshopId) as number);
 
-    if (findManager) return { status: StatusCodes.BAD_REQUEST, error: 'Mechanical already exists' };
+    if (findManager) return { status: StatusCodes.BAD_REQUEST, error: 'Manager already exists' };
     if (!findWorkshopById) return { status: StatusCodes.NOT_FOUND, error: 'WorkShop not exist!' };
 
     const newManagerObject = {
