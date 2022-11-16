@@ -43,5 +43,16 @@ export const THStyled = styled.td`
      border-bottom: 1px solid gray;
   `};
 
+   ${props => props.btnDelete && `
+     border: 1px solid #c50101;
+     border-radius: 5px;
+
+     &:hover {
+      cursor: pointer;
+      background: #aa1616;
+      color: white;
+     }
+  `};
+
   justify-content: center;
 `;

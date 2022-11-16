@@ -49,3 +49,15 @@ export const createNewManager = async (managerData, workshopId) => {
 
   return workshop;
 }
+
+export const deleteWorkshopMechanical = async (id) => {
+  const DELETE_MECHANICAL = `mechanics/delete/${id}`
+
+  await api.delete(DELETE_MECHANICAL);
+}
+
+export const deleteWorkshopManager = async (id) => {
+  const DELETE_MANAGER = `managers/delete/${id}`
+
+  await api.delete(DELETE_MANAGER);
+}

@@ -5,7 +5,7 @@ import ListWorkshopMechanicals from '../components/ListWorkshopMechanicals';
 import RegisterEmployeeWorkshop from '../components/RegisterEmployeeWorkshop';
 import WorkshopHeader from '../components/WorkshopHeader'
 import { SystemContext } from '../context/SystemContext';
-import { createNewManager, createNewMechanical, getAllWorkshopManagers, getAllWorkshopMechanicals } from '../services/workshopRequest';
+import { createNewManager, createNewMechanical, deleteWorkshopManager, deleteWorkshopMechanical, getAllWorkshopManagers, getAllWorkshopMechanicals } from '../services/workshopRequest';
 
 import { TableStyled, THStyled, TRStyled } from '../styles/WokrshopHome.styled';
 
@@ -46,7 +46,7 @@ export default function WorkshopHome() {
     if (userData.roleOptionSelected === 'mechanical') {
       try {
         const data = await createNewMechanical(userData, userInfo.workshop_id);
-        getWorkshopEmployees(userInfo.workshop_id);
+        getWorkshopEmployees(userInfo.workshop_id.toString());
         console.log(data);
       } catch (error) {
         alert(error.response.data);
@@ -55,12 +55,26 @@ export default function WorkshopHome() {
 
     if (userData.roleOptionSelected === 'manager') {
       try {
-        const data = await createNewManager(userData, userInfo.workshop_id);
-        getWorkshopEmployees(userInfo.workshop_id);
+        const data = await createNewManager(userData, userInfo.workshop_id.toString());
+        getWorkshopEmployees(userInfo.workshop_id.toString());
         console.log(data);
       } catch (error) {
         alert(error.response.data);
       }
+    }
+  }
+
+  const onDeleteEmployees = async (id, type) => {
+    if (type === 'manager') {
+      await deleteWorkshopManager(id.toString());
+      getWorkshopEmployees(userInfo.workshop_id.toString());
+
+    }
+
+    if (type === 'mechanical') {
+      await deleteWorkshopMechanical(id.toString());
+      getWorkshopEmployees(userInfo.workshop_id.toString());
+
     }
   }
 
@@ -79,8 +93,9 @@ export default function WorkshopHome() {
         userData={userData}
         handleChange={handleChange}
       />
+
       <TableStyled>
-        <h2 style={{ color: 'gray' }}>Funcionários da Oficina</h2>
+        <h2 style={{ color: '#056CF9' }}>Funcionários Gerentes</h2>
         <thead>
           <TRStyled>
             <THStyled th lg>Name</THStyled>
@@ -92,15 +107,33 @@ export default function WorkshopHome() {
 
         <tbody>
           {workshopManagers.map((manager, index) => <ListWorkshopManagers
+            onDeleteEmployees={onDeleteEmployees}
             managerData={manager}
             index={index}
           />)}
+        </tbody>
+      </TableStyled>
 
+
+      <TableStyled>
+        <h2 style={{ color: '#056CF9' }}>Funcionários Mecânicos</h2>
+        <thead>
+          <TRStyled>
+            <THStyled th lg>Name</THStyled>
+            <THStyled th lg>Email</THStyled>
+            <THStyled th lg>Cargo</THStyled>
+            <THStyled th md>Ação</THStyled>
+          </TRStyled>
+        </thead>
+
+        <tbody>
           {workshopMechanicals.map((mechanical, index) => <ListWorkshopMechanicals
             mechanicalData={mechanical}
+            onDeleteEmployees={onDeleteEmployees}
             index={index}
           />)}
         </tbody>
+
       </TableStyled>
     </>
   )

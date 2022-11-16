@@ -24,7 +24,7 @@ export default function RegisterEmployeeWorkshop({
   return (
     <FormStyled onSubmit={handleSubmit}>
       <div>
-        <h2 style={{ color: 'gray' }}>Registrar funcionários</h2>
+        <h2 style={{ color: 'green' }}>Registrar funcionários</h2>
       </div>
 
       <SectionInputStyled>
