@@ -84,7 +84,12 @@ export const ButtonStyled = styled.button`
       background: #036B52;
       color: #FFFFFF;
       cursor: pointer;
-  }
+    }
+  `};
+
+   ${props => props.userService && `
+      margin-top: 3rem;
+      height: 2.4rem;
   `};
 `;
 

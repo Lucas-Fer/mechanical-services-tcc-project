@@ -22,6 +22,5 @@ export const createUser = async (body) => {
 export const loginUser = async (body) => {
   const user = await api.post(LOGIN_USER, body);
   return user;
-
 }
 

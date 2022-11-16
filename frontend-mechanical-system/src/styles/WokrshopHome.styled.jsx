@@ -23,6 +23,8 @@ export const TRStyled = styled.tr`
 
 export const THStyled = styled.td`
   display: flex;
+  justify-content: end;
+
   width: 100%;
 
   padding: 5px;
@@ -46,7 +48,6 @@ export const THStyled = styled.td`
    ${props => props.btnDelete && `
      border: 1px solid #c50101;
      border-radius: 5px;
-
      &:hover {
       cursor: pointer;
       background: #aa1616;
