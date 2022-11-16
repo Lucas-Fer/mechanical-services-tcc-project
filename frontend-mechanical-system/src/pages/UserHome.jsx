@@ -1,7 +1,10 @@
 import React from 'react'
+import UserHeader from '../components/UserHeader'
 
 export default function UserHome() {
   return (
-    <div>UserHome</div>
+    <>
+      <UserHeader />
+    </>
   )
 }

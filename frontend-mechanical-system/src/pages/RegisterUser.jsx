@@ -37,7 +37,7 @@ export default function RegisterUser() {
   }
 
   useEffect(() => {
-    if (userLogged) history.push('/home');
+    if (userLogged) history.push('user/home');
   }, [userLogged])
 
   return (
