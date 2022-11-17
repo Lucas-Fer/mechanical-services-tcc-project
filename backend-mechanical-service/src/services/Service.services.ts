@@ -62,10 +62,8 @@ export default class Service {
       include: [
         {
           model: UsersModel,
-          required: true,
         }, {
           model: Mechanical,
-          required: true,
         }
       ]
     });
