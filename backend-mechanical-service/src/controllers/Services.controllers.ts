@@ -67,4 +67,12 @@ export default class ServiceController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async getServiceById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    const result = await this.userService.getServiceById(Number(id));
+
+    return res.status(200).json(result);
+  }
 }
