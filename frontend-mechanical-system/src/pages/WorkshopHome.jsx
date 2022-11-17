@@ -88,11 +88,12 @@ export default function WorkshopHome() {
   return (
     <>
       <WorkshopHeader />
-      <RegisterEmployeeWorkshop
+      {userInfo.user_role === "ADMIN" && <RegisterEmployeeWorkshop
         handleSubmit={handleSubmit}
         userData={userData}
         handleChange={handleChange}
-      />
+      />}
+
 
       <TableStyled>
         <h2 style={{ color: '#056CF9' }}>Funcionários Gerentes</h2>
@@ -101,7 +102,8 @@ export default function WorkshopHome() {
             <THStyled th lg>Name</THStyled>
             <THStyled th lg>Email</THStyled>
             <THStyled th lg>Cargo</THStyled>
-            <THStyled th md>Ação</THStyled>
+            {userInfo.user_role === "ADMIN" && <THStyled th md>Ação</THStyled>}
+
           </TRStyled>
         </thead>
 
@@ -110,6 +112,7 @@ export default function WorkshopHome() {
             onDeleteEmployees={onDeleteEmployees}
             managerData={manager}
             index={index}
+            userRole={userInfo.user_role}
           />)}
         </tbody>
       </TableStyled>
@@ -122,7 +125,7 @@ export default function WorkshopHome() {
             <THStyled th lg>Name</THStyled>
             <THStyled th lg>Email</THStyled>
             <THStyled th lg>Cargo</THStyled>
-            <THStyled th md>Ação</THStyled>
+            {userInfo.user_role === "ADMIN" && <THStyled th md>Ação</THStyled>}
           </TRStyled>
         </thead>
 
@@ -131,6 +134,7 @@ export default function WorkshopHome() {
             mechanicalData={mechanical}
             onDeleteEmployees={onDeleteEmployees}
             index={index}
+            userRole={userInfo.user_role}
           />)}
         </tbody>
 

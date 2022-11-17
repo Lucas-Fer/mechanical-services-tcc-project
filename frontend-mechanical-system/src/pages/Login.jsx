@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 
 import { SystemContext } from '../context/SystemContext';
+import { loginManager } from '../services/managerRequest';
 import { getAllUser, loginUser } from '../services/userRequest';
 import { loginWorkshop } from '../services/workshopRequest';
 
@@ -64,6 +65,18 @@ export default function Login() {
         setUserLogged(true);
         setUserInfo(response.data);
         history.push('/workshop/home')
+      } catch (error) {
+        setUserLogged(false);
+        alert(error.response.data)
+      }
+    }
+
+    if (roleOptionSelected === 'manager') {
+      try {
+        const response = await loginManager({ email, password });
+        setUserLogged(true);
+        setUserInfo(response.data);
+        history.push('/services')
       } catch (error) {
         setUserLogged(false);
         alert(error.response.data)

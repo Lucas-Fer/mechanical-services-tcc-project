@@ -10,6 +10,7 @@ import WorkshopHome from './pages/WorkshopHome';
 import UserHome from './pages/UserHome';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
+import EditUserInfo from './pages/EditUserInfo';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/user/home" component={UserHome} />
         <Route exact path="/services" component={Services} />
         <Route exact path="/services/detail/:id" component={ServiceDetail} />
+        <Route exact path="/user/edit" component={EditUserInfo} />
       </Switch>
     </SystemProvider>
   );
