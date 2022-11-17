@@ -31,3 +31,9 @@ export const getServiceById = async (serviceId) => {
   const service = await api.get(LIST_SERVICE_ID);
   return service;
 }
+
+export const deleteService = async (serviceId) => {
+  const DELETE_SERVICE = `/services/delete/${serviceId}`;
+
+  await api.delete(DELETE_SERVICE);
+}

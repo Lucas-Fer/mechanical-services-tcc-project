@@ -28,7 +28,6 @@ export default function UserHome() {
 
     try {
       const { data } = await createService(serviceData);
-      console.log(data);
       history.push('/services');
     } catch (error) {
       alert(error.response.data)

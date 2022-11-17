@@ -139,6 +139,14 @@ export const BtnFinishService = styled.input`
     color: #FFFFFF;
     cursor: pointer;
   };
+
+ ${props => props.disabled && `
+     &:hover {
+      background: none;
+      color: gray;
+      cursor: auto;
+    }
+  `}
 `;
 
 export const SectionStyled = styled.div`
