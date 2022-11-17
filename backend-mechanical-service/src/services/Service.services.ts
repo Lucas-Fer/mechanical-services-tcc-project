@@ -57,7 +57,18 @@ export default class Service {
   }
 
   async getServiceById(id: number) {
-    const findServiceById = await this.tableService.findOne({ where: { service_id: id } });
+    const findServiceById = await this.tableService.findOne({
+      where: { service_id: id },
+      include: [
+        {
+          model: UsersModel,
+          required: true,
+        }, {
+          model: Mechanical,
+          required: true,
+        }
+      ]
+    });
 
     return findServiceById;
   }
