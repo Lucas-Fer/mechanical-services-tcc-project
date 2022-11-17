@@ -37,3 +37,10 @@ export const deleteService = async (serviceId) => {
 
   await api.delete(DELETE_SERVICE);
 }
+
+export const updateServiceInfo = async (serviceId, serviceInfo) => {
+  const UPDATE_SERVICE = `/services/update-by-user/${serviceId}`;
+
+  const data = api.put(UPDATE_SERVICE, serviceInfo);
+  return data;
+}

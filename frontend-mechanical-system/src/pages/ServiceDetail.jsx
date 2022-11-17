@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import UserHeader from '../components/UserHeader';
 import WorkshopHeader from '../components/WorkshopHeader';
 import { SystemContext } from '../context/SystemContext';
-import { deleteService, getServiceById } from '../services/serviceRequest';
+import { deleteService, getServiceById, updateServiceInfo } from '../services/serviceRequest';
 import { BtnChangeStatusService, CardItemStatus, DetailServiceHeader, DetailServiceInfo, DetailServiceMain, MainStyled, SectionStyled } from '../styles/Service.styled';
 
 export default function ServiceDetail() {
@@ -36,9 +36,25 @@ export default function ServiceDetail() {
     setServiceDetails((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
-  const editService = () => {
+  const onEditService = () => {
     setServiceDetails(serviceInfo);
     setIsUpdate(true);
+  }
+
+  const updateService = async () => {
+    try {
+      const response = await updateServiceInfo(id, {
+        description: serviceDetails.description,
+        vehicleModel: serviceDetails.vehicle_model,
+        vehicleBrand: serviceDetails.vehicle_brand,
+        vehicleYear: serviceDetails.vehicle_year,
+      });
+      getServiceInfo(id);
+      setIsUpdate(false);
+      alert(response.data)
+    } catch (error) {
+      alert(error.response.data)
+    }
   }
 
   useEffect(() => {
@@ -60,7 +76,7 @@ export default function ServiceDetail() {
                 edit
                 type="button"
                 value="Editar"
-                onClick={editService}
+                onClick={onEditService}
               />
 
               <BtnChangeStatusService
@@ -142,6 +158,7 @@ export default function ServiceDetail() {
               edit
               type="button"
               value="Salvar alterações"
+              onClick={updateService}
             />
 
             <BtnChangeStatusService
