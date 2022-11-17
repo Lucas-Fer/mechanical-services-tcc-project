@@ -15,6 +15,8 @@ export default function ServiceDetail() {
 
   const [serviceInfo, setServiceInfo] = useState({});
   const [userDetails, setUserDetails] = useState({});
+  const [serviceDetails, setServiceDetails] = useState({});
+  const [isUpdate, setIsUpdate] = useState(false);
 
   const getServiceInfo = async (serviceId) => {
     const { data } = await getServiceById(Number(serviceId));
@@ -22,7 +24,6 @@ export default function ServiceDetail() {
 
     setUserDetails(user);
     setServiceInfo(data);
-
   }
 
   const btnDeleteService = async () => {
@@ -31,9 +32,19 @@ export default function ServiceDetail() {
     history.push('/services');
   }
 
+  const handleChange = ({ target: { value, name } }) => {
+    setServiceDetails((prevInfo) => ({ ...prevInfo, [name]: value }));
+  };
+
+  const editService = () => {
+    setServiceDetails(serviceInfo);
+    setIsUpdate(true);
+  }
+
   useEffect(() => {
     if (!userInfo.user_role) history.push('/');
     getServiceInfo(id);
+
   }, []);
 
   return (
@@ -49,6 +60,7 @@ export default function ServiceDetail() {
                 edit
                 type="button"
                 value="Editar"
+                onClick={editService}
               />
 
               <BtnChangeStatusService
@@ -120,6 +132,81 @@ export default function ServiceDetail() {
           </div>
         </DetailServiceMain>
       </MainStyled>
+
+      {isUpdate && <MainStyled md>
+        <DetailServiceHeader>
+          <h2 style={{ color: '#056CF9 ' }}>Preencha as informações</h2>
+
+          <div>
+            <BtnChangeStatusService
+              edit
+              type="button"
+              value="Salvar alterações"
+            />
+
+            <BtnChangeStatusService
+              delete
+              type="button"
+              value="Cancelar"
+              onClick={() => setIsUpdate(false)}
+            />
+          </div>
+
+        </DetailServiceHeader>
+
+        <DetailServiceMain>
+
+          <SectionStyled>
+            <div>
+              <h3 style={{ color: "green" }}>Descrição</h3>
+              <input
+                value={serviceDetails.description}
+                onChange={handleChange}
+                name="description"
+                type="text" />
+            </div>
+
+          </SectionStyled>
+
+
+          <div>
+            <hr />
+            <h3 style={{ color: "green" }}>Informações do Veículo</h3>
+
+            <div>
+              <span>Modelo:</span>
+              <input
+                type="text"
+                value={serviceDetails.vehicle_model}
+                name="vehicle_model"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div style={{ marginTop: "8px" }}>
+              <span>Marca:</span>
+              <input
+                type="text"
+                value={serviceDetails.vehicle_brand}
+                name="vehicle_brand"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div style={{ marginTop: "8px" }}>
+              <span>Ano:</span>
+              <input
+                type="number"
+                value={serviceDetails.vehicle_year}
+                name="vehicle_year"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+        </DetailServiceMain>
+      </MainStyled>}
+
     </>
   )
 }
