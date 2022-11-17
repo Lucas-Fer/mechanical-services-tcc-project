@@ -4,7 +4,7 @@ import UserHeader from '../components/UserHeader';
 import WorkshopHeader from '../components/WorkshopHeader';
 import { SystemContext } from '../context/SystemContext';
 import { deleteService, getServiceById } from '../services/serviceRequest';
-import { BtnFinishService, CardItemStatus, DetailServiceHeader, DetailServiceInfo, DetailServiceMain, MainStyled, SectionStyled } from '../styles/Service.styled';
+import { BtnChangeStatusService, CardItemStatus, DetailServiceHeader, DetailServiceInfo, DetailServiceMain, MainStyled, SectionStyled } from '../styles/Service.styled';
 
 export default function ServiceDetail() {
 
@@ -15,14 +15,11 @@ export default function ServiceDetail() {
 
   const [serviceInfo, setServiceInfo] = useState({});
   const [userDetails, setUserDetails] = useState({});
-  const [btnDisabled, setBtnDisabled] = useState(false);
 
   const getServiceInfo = async (serviceId) => {
     const { data } = await getServiceById(Number(serviceId));
     const { user } = data;
 
-    if (data.status === 'OPEN') setBtnDisabled(true);
-    if (data.status === 'PROGRESS') setBtnDisabled(false);
     setUserDetails(user);
     setServiceInfo(data);
 
@@ -45,12 +42,25 @@ export default function ServiceDetail() {
       <MainStyled md>
         <DetailServiceHeader>
           <h2 style={{ color: '#056CF9 ' }}>Detalhes do serviço</h2>
-          <BtnFinishService
-            type="button"
-            value="Finalizar serviço"
-            onClick={btnDeleteService}
-            disabled={btnDisabled}
-          />
+
+          {userInfo.user_role === 'CLIENT' && userInfo.user_id === userDetails.user_id && (
+            <div>
+              <BtnChangeStatusService
+                edit
+                type="button"
+                value="Editar"
+              />
+
+              <BtnChangeStatusService
+                delete
+                type="button"
+                value="Excluir"
+                onClick={btnDeleteService}
+              />
+            </div>
+
+          )}
+
         </DetailServiceHeader>
 
         <DetailServiceMain>

@@ -125,11 +125,9 @@ export const DetailServiceInfo = styled.div`
   align-items: center;
 `;
 
-export const BtnFinishService = styled.input`
-  border: none;
-  border: 1px solid #036B52;
+export const BtnChangeStatusService = styled.input`
   text-decoration: none;
-    
+  background: none ;
   padding: 10px;
   border-radius: 3px;
   cursor: pointer;
@@ -147,6 +145,29 @@ export const BtnFinishService = styled.input`
       cursor: auto;
     }
   `}
+
+  ${props => props.delete && `
+   border: 1px solid #c50101;
+   border-radius: 5px;
+  
+    &:hover {
+     cursor: pointer;
+     background: #aa1616;
+     color: white;
+   }
+  `}
+
+  ${props => props.edit && `
+    border: 1px solid #036B52;
+    border-radius: 5px;
+    margin-right: 5px;
+
+      &:hover {
+      background: #036B52;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+  `};
 `;
 
 export const SectionStyled = styled.div`
