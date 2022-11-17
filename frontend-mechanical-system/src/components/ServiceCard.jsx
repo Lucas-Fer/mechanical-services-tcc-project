@@ -5,7 +5,7 @@ import { CardItem, CardItemStatus, CardItemWorkshop, CartItemInfo } from '../sty
 export default function ServiceCard({ service }) {
 
   return (
-    <CardItem>
+    <CardItem to={`/services/detail/${service.service_id}`}>
       <CartItemInfo>
         <span>Serviço</span>
         <span>000{service.service_id}</span>

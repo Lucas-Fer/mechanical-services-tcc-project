@@ -9,6 +9,7 @@ import RegisterWorkshop from './pages/RegisterWorkshop';
 import WorkshopHome from './pages/WorkshopHome';
 import UserHome from './pages/UserHome';
 import Services from './pages/Services';
+import ServiceDetail from './pages/ServiceDetail';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/workshop/home" component={WorkshopHome} />
         <Route exact path="/user/home" component={UserHome} />
         <Route exact path="/services" component={Services} />
+        <Route exact path="/services/detail/:id" component={ServiceDetail} />
       </Switch>
     </SystemProvider>
   );

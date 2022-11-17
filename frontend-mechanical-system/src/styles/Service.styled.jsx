@@ -7,14 +7,17 @@ export const MainStyled = styled.form`
   
   margin-top: 2rem;
   padding: 1rem;
-  border: 1px solid #343434;
+  border: 2px solid #343434;
   
   box-shadow: 10px 5px 5px #343434;
   border-radius: 8px;
-  
   font-family: sans-serif;
   width: 95%;
   margin: 2rem auto;
+
+  ${props => props.md && `
+    width: 55%;
+  ` }
 `;
 
 export const CardSection = styled.section`
@@ -22,7 +25,7 @@ export const CardSection = styled.section`
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-
+  
   width: 100%;
   margin: 1rem auto;
 `;
@@ -32,14 +35,14 @@ export const CardItem = styled(Link)`
   justify-content: space-around;
   align-items: center;
 
-  box-shadow: 10px 5px 5px #343434;
+  box-shadow: 10px 10px 10px 5px #343434;
   border-radius: 8px;
-  background: #B1C2BE;
+  background: white;
+  border: 1px solid transparent;
 
   width: 49%;
   height: 7rem;
   margin: 1rem 0;
-
   text-decoration: none;
 `;
 
@@ -49,7 +52,7 @@ export const CartItemInfo = styled.div`
   align-items: center;
   justify-content: center;
 
-  background: white;
+  background: #056CF9;
   border: 1px solid #B1C2BE;
   border-radius: 6px;
 
@@ -57,7 +60,7 @@ export const CartItemInfo = styled.div`
   width: 25%;
   margin-left: -5px;
   
-  color: black;
+  color: white;
   font-weight: bolder;
 `;
 
@@ -95,4 +98,52 @@ export const CardItemWorkshop = styled.div`
   text-align: center;
   justify-content: center;
   gap: 0.5rem;
+`;
+
+export const DetailServiceHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+
+export const DetailServiceMain = styled.main`
+  border: 1px solid #B1C2BE;
+  border-radius: 6px;
+
+  width: 70%;
+  padding: 1rem;
+  margin: 1rem auto;
+  font-family: sans-serif;
+  color: gray;
+  font-weight: bolder;
+`;
+
+export const DetailServiceInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const BtnFinishService = styled.input`
+  border: none;
+  border: 1px solid #036B52;
+  text-decoration: none;
+    
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  
+  &:hover {
+    background: #036B52;
+    color: #FFFFFF;
+    cursor: pointer;
+  };
+`;
+
+export const SectionStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;

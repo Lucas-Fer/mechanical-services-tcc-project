@@ -24,3 +24,10 @@ export const getserviceByUser = async (userId) => {
   const userServices = await api.get(LIST_USER_SERVICES);
   return userServices;
 }
+
+export const getServiceById = async (serviceId) => {
+  const LIST_SERVICE_ID = `/services/serviceId/${serviceId}`
+
+  const service = await api.get(LIST_SERVICE_ID);
+  return service;
+}
