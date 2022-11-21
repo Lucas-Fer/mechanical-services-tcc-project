@@ -16,6 +16,7 @@ servicesRoutes.put('/update-by-mechanical/:id', (req, res) => servicesController
 
 servicesRoutes.delete('/delete/:id', (req, res) => servicesController.delete(req, res));
 servicesRoutes.get('/:id', (req, res) => servicesController.getUserServices(req, res));
+servicesRoutes.get('/workshop/:id', (req, res) => servicesController.getWorkshopServices(req, res));
 servicesRoutes.get('/serviceId/:id', (req, res) => servicesController.getServiceById(req, res));
 servicesRoutes.get('/mechanical/:id', (req, res) => servicesController.getAllByMechanical(req, res));
 

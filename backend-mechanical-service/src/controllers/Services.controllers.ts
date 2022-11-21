@@ -75,4 +75,12 @@ export default class ServiceController {
 
     return res.status(200).json(result);
   }
+
+  public async getWorkshopServices(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    const { status, response, error } = await this.userService.getWorkshopServices(id as string);
+
+    return res.status(status).json(response ? response : error);
+  }
 }

@@ -26,6 +26,15 @@ module.exports = {
         vehicle_year: 2019,
         status: 'OPEN'
       },
+      {
+        user_id: 2,
+        description: 'Manuntenção',
+        vehicle_model: 'FORD FOCUS',
+        vehicle_brand: 'FORD',
+        vehicle_year: 2019,
+        status: 'OPEN',
+        mechanical_id: 2,
+      },
     ], {});
   },
 

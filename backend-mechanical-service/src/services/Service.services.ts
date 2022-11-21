@@ -6,7 +6,8 @@ import UsersModel from "../database/models/Users.model";
 import StatusService from "../@types/StatusService.enum";
 import MechanicalService from "./Mechanical.services";
 import Mechanical from "../database/models/Mechanical.model";
-import IMechanical from "../@types/Mechanical.interface";
+import WorkshopService from "./Workshop.services";
+import WorkshopModel from "../database/models/Workshops.model";
 
 type Response = {
   status: number;
@@ -20,10 +21,12 @@ type Object = {
 export default class Service {
   private _userService: UserService;
   private _mechanicalService: MechanicalService;
+  private _workshopService: WorkshopService;
 
   constructor(private tableService: typeof Services) {
     this._userService = new UserService(UsersModel);
     this._mechanicalService = new MechanicalService(Mechanical);
+    this._workshopService = new WorkshopService(WorkshopModel);
   }
 
   async getAllServices(): Promise<Response> {
@@ -31,7 +34,7 @@ export default class Service {
       include: [{
         model: UsersModel,
         required: true,
-      }]
+      }, { model: Mechanical }]
     });
 
     return { status: StatusCodes.OK, response: allServices };
@@ -179,4 +182,22 @@ export default class Service {
     return { status: StatusCodes.OK, response: result };
   }
 
+  async getWorkshopServices(idWorkshop: string): Promise<Response> {
+    const findWorkshopById = await this._workshopService.findWorkshopById(Number(idWorkshop));
+
+    if (!findWorkshopById) return { status: StatusCodes.NOT_FOUND, error: 'Workshop not found' };
+
+    const allWorkshopServices = await this.tableService.findAll({
+      include: [{
+        model: UsersModel,
+        required: true,
+      }, { model: Mechanical, where: { workshop_id: idWorkshop } }],
+
+    });
+
+
+
+
+    return { status: StatusCodes.OK, response: allWorkshopServices };
+  }
 }
