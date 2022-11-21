@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import UserHeader from '../components/UserHeader';
 import WorkshopHeader from '../components/WorkshopHeader';
 import { SystemContext } from '../context/SystemContext';
-import { deleteService, getServiceById, updateServiceByManager, updateServiceInfo } from '../services/serviceRequest';
+import { deleteService, getServiceById, getserviceByMechanical, updateServiceByManager, updateServiceByMechanical, updateServiceInfo } from '../services/serviceRequest';
 import { getAllWorkshopMechanicals } from '../services/workshopRequest';
 import { OptionStyled, SelectStyled } from '../styles/Login.styled';
 import { BtnChangeStatusService, CardItemStatus, DetailServiceHeader, DetailServiceInfo, DetailServiceMain, MainStyled, SectionStyled } from '../styles/Service.styled';
@@ -51,6 +51,16 @@ export default function ServiceDetail() {
       await updateServiceByManager(id.toString(), {
         mechanicalId,
       });
+      getServiceInfo(id);
+    } catch (error) {
+      alert(error);
+    }
+
+  }
+
+  const updateServiceMechanical = async () => {
+    try {
+      await updateServiceByMechanical(id.toString(), userInfo.mechanical_id);
       getServiceInfo(id);
     } catch (error) {
       alert(error);
@@ -170,6 +180,17 @@ export default function ServiceDetail() {
 
           )}
 
+          {userInfo.user_role === 'MECHANICAL' && userInfo.mechanical_id === serviceInfo.mechanical_id && serviceInfo.status === 'PROGRESS' && (
+            <div>
+              <BtnChangeStatusService
+                edit
+                type="button"
+                value="Completar"
+                onClick={updateServiceMechanical}
+              />
+            </div>
+
+          )}
         </DetailServiceHeader>
 
         <DetailServiceMain>

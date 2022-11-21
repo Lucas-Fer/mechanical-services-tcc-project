@@ -62,14 +62,15 @@ export const allWorkshopService = async (workshopId) => {
 
 export const updateServiceByManager = async (serviceId, id) => {
   const UPDATE_SERVICE = `/services/update-by-manager/${serviceId}`;
+  console.log(id);
 
   await api.put(UPDATE_SERVICE, id);
 
 }
 
 export const updateServiceByMechanical = async (serviceId, id) => {
-  const UPDATE_SERVICE = `/services/update-by-mechanical/${serviceId}`;
+  const UPDATE_SERVICE2 = `/services/update-by-mechanical/${serviceId}`;
 
-  await api.put(UPDATE_SERVICE, id);
+  await api.put(UPDATE_SERVICE2, { mechanicalId: id });
 
 }
