@@ -32,7 +32,7 @@ module.exports = {
         vehicle_model: 'FORD FOCUS',
         vehicle_brand: 'FORD',
         vehicle_year: 2019,
-        status: 'OPEN',
+        status: 'PROGRESS',
         mechanical_id: 2,
       },
     ], {});

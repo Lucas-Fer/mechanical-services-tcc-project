@@ -2,14 +2,14 @@ module.exports = {
   up: async (queryInterface) => {
     await queryInterface.bulkInsert('managers', [
       {
-        manager_name: 'Manager1',
+        manager_name: 'ManagerWorkshop2',
         manager_email: 'manager1@teste.com',
         manager_password: 'manager123',
         workshop_id: 2,
         user_role: 'MANAGER',
       },
       {
-        manager_name: 'Manager1',
+        manager_name: 'ManagerWorkshop1',
         manager_email: 'manager2@teste.com',
         manager_password: 'manager123',
         workshop_id: 1,

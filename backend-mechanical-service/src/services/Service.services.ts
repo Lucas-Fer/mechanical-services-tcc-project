@@ -194,10 +194,15 @@ export default class Service {
       }, { model: Mechanical, where: { workshop_id: idWorkshop } }],
 
     });
-
-
-
-
     return { status: StatusCodes.OK, response: allWorkshopServices };
+  }
+
+  async getMechanicalServices(mechanicalId: string): Promise<Response> {
+    const findUserById = await this._userService.findUserById(Number(mechanicalId) as number);
+
+    if (!findUserById) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' }
+
+    const allMechanicalServices = await this.tableService.findAll({ where: { mechanical_id: mechanicalId } })
+    return { status: StatusCodes.OK, response: allMechanicalServices };
   }
 }

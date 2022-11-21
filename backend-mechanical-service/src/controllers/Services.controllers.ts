@@ -68,6 +68,14 @@ export default class ServiceController {
     return res.status(status).json(response ? response : error);
   }
 
+  public async getMechanicalServices(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    const { status, response, error } = await this.userService.getMechanicalServices(id as string);
+
+    return res.status(status).json(response ? response : error);
+  }
+
   public async getServiceById(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
 
