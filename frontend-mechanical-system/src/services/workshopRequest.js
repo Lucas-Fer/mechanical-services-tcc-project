@@ -18,6 +18,14 @@ export const loginWorkshop = async (body) => {
   return workshop;
 }
 
+export const loginMechanical = async (body) => {
+  const LOGIN_MECHANICAL = '/mechanics/login';
+
+  const mechanical = await api.post(LOGIN_MECHANICAL, body);
+
+  return mechanical;
+}
+
 export const getAllWorkshopManagers = async (workshopId) => {
   const LIST_WORKSHOP_MANAGERS = `http://localhost:3001/workshops/${workshopId}/workshop-managers`;
 

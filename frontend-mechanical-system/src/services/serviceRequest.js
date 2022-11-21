@@ -25,6 +25,13 @@ export const getserviceByUser = async (userId) => {
   return userServices;
 }
 
+export const getserviceByMechanical = async (mechanicalId) => {
+  const LIST_USER_SERVICES = `/services/mechanical/${mechanicalId}`
+
+  const mechanicalService = await api.get(LIST_USER_SERVICES);
+  return mechanicalService;
+}
+
 export const getServiceById = async (serviceId) => {
   const LIST_SERVICE_ID = `/services/serviceId/${serviceId}`
 

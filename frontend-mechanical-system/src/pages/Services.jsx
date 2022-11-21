@@ -4,7 +4,7 @@ import UserHeader from '../components/UserHeader'
 import { useHistory } from 'react-router-dom';
 import WorkshopHeader from '../components/WorkshopHeader'
 import { SystemContext } from '../context/SystemContext';
-import { allWorkshopService, getAllServices, getserviceByUser } from '../services/serviceRequest';
+import { allWorkshopService, getAllServices, getserviceByMechanical, getserviceByUser } from '../services/serviceRequest';
 import { MainStyled, CardSection } from '../styles/Service.styled';
 
 export default function Services() {
@@ -12,6 +12,7 @@ export default function Services() {
 
   const [services, setServices] = useState([]);
   const [userService, setUserService] = useState([]);
+  const [mechanicalService, setMechanicalService] = useState([]);
   const [workshopServices, setWorkshopServices] = useState([]);
 
   let history = useHistory();
@@ -34,6 +35,15 @@ export default function Services() {
     }
   }
 
+  const getMechanicalServices = async (id) => {
+    try {
+      const { data } = await getserviceByMechanical(id.toString());
+      setMechanicalService(data)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
   const getWorkshopServices = async (id) => {
     try {
       const { data } = await allWorkshopService(id.toString());
@@ -47,7 +57,7 @@ export default function Services() {
     if (!userInfo.user_role) history.push('/');
     if (userInfo.user_role === 'CLIENT') getUserService(userInfo.user_id);
     if (userInfo.user_role === 'ADMIN' || userInfo.user_role === 'MANAGER') getWorkshopServices(userInfo.workshop_id);
-
+    if (userInfo.user_role === 'MECHANICAL') getMechanicalServices(userInfo.mechanical_id)
     getServices();
   }, []);
 
@@ -81,6 +91,16 @@ export default function Services() {
 
           <CardSection>
             {workshopServices.map((service) => <ServiceCard service={service} />)}
+          </CardSection>
+        </MainStyled>
+      )}
+
+      {userInfo.user_role === 'MECHANICAL' && (
+        <MainStyled>
+          <h3 style={{ color: '#056CF9 ' }}>Seus serviços</h3>
+
+          <CardSection>
+            {mechanicalService.map((service) => <ServiceCard service={service} />)}
           </CardSection>
         </MainStyled>
       )}

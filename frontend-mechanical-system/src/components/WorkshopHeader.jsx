@@ -21,10 +21,10 @@ export default function WorkshopHeader() {
 
       <NavBarStyled>
         {userInfo.user_role === "ADMIN" ? (
-          <LinkStyled borderleft to="/workshop/edit">Workshop Admin</LinkStyled>
+          <LinkStyled borderleft to="/workshop/home">Workshop Admin</LinkStyled>
 
         ) : (
-          <LinkStyled borderleft to="/workshop-employee/home">{userInfo.manager_name}</LinkStyled>
+          <LinkStyled borderleft to="/workshop/home">{userInfo.manager_name ? userInfo.manager_name : userInfo.mechanical_name}</LinkStyled>
         )}
         <LinkStyled borderleft to="/">Logout</LinkStyled>
       </NavBarStyled>

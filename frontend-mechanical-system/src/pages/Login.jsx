@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { SystemContext } from '../context/SystemContext';
 import { loginManager } from '../services/managerRequest';
 import { getAllUser, loginUser } from '../services/userRequest';
-import { loginWorkshop } from '../services/workshopRequest';
+import { loginMechanical, loginWorkshop } from '../services/workshopRequest';
 
 import {
   ButtonStyled,
@@ -74,6 +74,18 @@ export default function Login() {
     if (roleOptionSelected === 'manager') {
       try {
         const response = await loginManager({ email, password });
+        setUserLogged(true);
+        setUserInfo(response.data);
+        history.push('/services')
+      } catch (error) {
+        setUserLogged(false);
+        alert(error.response.data)
+      }
+    }
+
+    if (roleOptionSelected === 'mechanical') {
+      try {
+        const response = await loginMechanical({ email, password });
         setUserLogged(true);
         setUserInfo(response.data);
         history.push('/services')
