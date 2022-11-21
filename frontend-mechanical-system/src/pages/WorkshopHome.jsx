@@ -47,7 +47,6 @@ export default function WorkshopHome() {
       try {
         const data = await createNewMechanical(userData, userInfo.workshop_id);
         getWorkshopEmployees(userInfo.workshop_id.toString());
-        console.log(data);
       } catch (error) {
         alert(error.response.data);
       }
@@ -57,7 +56,6 @@ export default function WorkshopHome() {
       try {
         const data = await createNewManager(userData, userInfo.workshop_id.toString());
         getWorkshopEmployees(userInfo.workshop_id.toString());
-        console.log(data);
       } catch (error) {
         alert(error.response.data);
       }

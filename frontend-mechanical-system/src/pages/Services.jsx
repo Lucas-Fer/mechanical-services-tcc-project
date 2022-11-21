@@ -75,6 +75,16 @@ export default function Services() {
         </MainStyled>
       )}
 
+      {userInfo.user_role === 'ADMIN' && (
+        <MainStyled>
+          <h3 style={{ color: '#056CF9 ' }}>Serviços atrelados a sua Oficina</h3>
+
+          <CardSection>
+            {workshopServices.map((service) => <ServiceCard service={service} />)}
+          </CardSection>
+        </MainStyled>
+      )}
+
       <MainStyled>
         <h3 style={{ color: '#056CF9 ' }}>Todos os serviços</h3>
 

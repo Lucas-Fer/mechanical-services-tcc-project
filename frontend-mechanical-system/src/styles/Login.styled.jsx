@@ -111,6 +111,12 @@ export const SelectStyled = styled.select`
     background: transparent;
     cursor: pointer;
   }
+
+  ${props => props.md && `
+    width: 49%;
+    height: 2rem;
+    margin-right: 2px;
+  `}
 `;
 
 export const OptionStyled = styled.option`
