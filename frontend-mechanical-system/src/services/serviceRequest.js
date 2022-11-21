@@ -44,3 +44,11 @@ export const updateServiceInfo = async (serviceId, serviceInfo) => {
   const data = api.put(UPDATE_SERVICE, serviceInfo);
   return data;
 }
+
+export const allWorkshopService = async (workshopId) => {
+  const WORKSHOP_SERVICES = `/services/workshop/${workshopId}`;
+
+  const workshopServices = await api.get(WORKSHOP_SERVICES);
+
+  return workshopServices;
+}

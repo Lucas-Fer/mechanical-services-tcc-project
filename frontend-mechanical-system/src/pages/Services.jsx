@@ -4,7 +4,7 @@ import UserHeader from '../components/UserHeader'
 import { useHistory } from 'react-router-dom';
 import WorkshopHeader from '../components/WorkshopHeader'
 import { SystemContext } from '../context/SystemContext';
-import { getAllServices, getserviceByUser } from '../services/serviceRequest';
+import { allWorkshopService, getAllServices, getserviceByUser } from '../services/serviceRequest';
 import { MainStyled, CardSection } from '../styles/Service.styled';
 
 export default function Services() {
@@ -12,6 +12,7 @@ export default function Services() {
 
   const [services, setServices] = useState([]);
   const [userService, setUserService] = useState([]);
+  const [workshopServices, setWorkshopServices] = useState([]);
 
   let history = useHistory();
 
@@ -33,9 +34,19 @@ export default function Services() {
     }
   }
 
+  const getWorkshopServices = async (id) => {
+    try {
+      const { data } = await allWorkshopService(id.toString());
+      setWorkshopServices(data)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
   useEffect(() => {
     if (!userInfo.user_role) history.push('/');
     if (userInfo.user_role === 'CLIENT') getUserService(userInfo.user_id);
+    if (userInfo.user_role === 'ADMIN' || userInfo.user_role === 'MANAGER') getWorkshopServices(userInfo.workshop_id);
 
     getServices();
   }, []);
@@ -50,6 +61,16 @@ export default function Services() {
 
           <CardSection>
             {userService.map((service) => <ServiceCard service={service} />)}
+          </CardSection>
+        </MainStyled>
+      )}
+
+      {userInfo.user_role === 'MANAGER' && (
+        <MainStyled>
+          <h3 style={{ color: '#056CF9 ' }}>Serviços atrelados a sua Oficina</h3>
+
+          <CardSection>
+            {workshopServices.map((service) => <ServiceCard service={service} />)}
           </CardSection>
         </MainStyled>
       )}

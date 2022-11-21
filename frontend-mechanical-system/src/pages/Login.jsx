@@ -27,7 +27,7 @@ export default function Login() {
 
   const options = [
     {
-      label: "Usuário padrão",
+      label: "Usuário comum",
       value: "user",
     },
     {
