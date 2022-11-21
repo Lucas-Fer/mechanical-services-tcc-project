@@ -198,11 +198,17 @@ export default class Service {
   }
 
   async getMechanicalServices(mechanicalId: string): Promise<Response> {
-    const findUserById = await this._userService.findUserById(Number(mechanicalId) as number);
+    const findUserById = await this._mechanicalService.findMechanicalById(Number(mechanicalId) as number);
 
     if (!findUserById) return { status: StatusCodes.NOT_FOUND, error: 'Mechanical not found' }
 
-    const allMechanicalServices = await this.tableService.findAll({ where: { mechanical_id: mechanicalId } })
+    const allMechanicalServices = await this.tableService.findAll({
+      where: { mechanical_id: mechanicalId },
+      include: [{
+        model: UsersModel,
+        required: true,
+      }]
+    })
     return { status: StatusCodes.OK, response: allMechanicalServices };
   }
 }
