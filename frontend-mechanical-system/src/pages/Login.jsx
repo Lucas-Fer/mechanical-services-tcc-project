@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { SystemContext } from '../context/SystemContext';
 import { loginManager } from '../services/managerRequest';
-import { getAllUser, loginUser } from '../services/userRequest';
+import { clientesGet, getAllUser, loginCliente, loginUser, updateCliente } from '../services/userRequest';
 import { loginMechanical, loginWorkshop } from '../services/workshopRequest';
 
 import {
@@ -96,9 +96,38 @@ export default function Login() {
     }
   }
 
+  // const getClientes = async () => {
+  //  try {
+  //    const { data } = await clientesGet();
+  //    console.log(data);
+  //  } catch (error) {
+  //    alert(error.response.data);
+  //  }
+  // }
+
+  //const loginClienteFunc = async () => {
+  ////  try {
+  //    const login = await loginCliente({ email: 'teste@teste.com', senha: 'senhanova' });
+  //  } catch (error) {
+  //    alert(error.response.data)
+  //  }
+  //}
+
+  //const updateCliente2 = async () => {
+  //  try {
+  //    const update = await updateCliente({ nome: 'novonovo', email: 'teste@teste.com', senha: 'senhanova', carteiraMotorista: 'kkkkkkkkk' }, 1);
+  //    console.log(update);
+  //  } catch (error) {
+  //    alert(error.response.data)
+  //  }
+  //}
+
   useEffect(() => {
     setUserLogged(false);
     setUserInfo();
+    //getClientes();
+    //loginClienteFunc();
+    // updateCliente2();
   }, []);
 
   const handleClick = (routeParam) => history.push(`/${routeParam}`);

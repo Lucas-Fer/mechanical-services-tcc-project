@@ -24,3 +24,20 @@ export const loginUser = async (body) => {
   return user;
 }
 
+export const clientesGet = async () => {
+  const data = await api.get('/clientes/');
+  return data;
+}
+
+export const loginCliente = async (body) => {
+  console.log(body);
+  const data = await api.post('/clientes/login-cliente', body);
+  return data;
+}
+
+export const updateCliente = async (body, id) => {
+  console.log(body);
+  const data = await api.put(`/clientes/update-cliente/${id}`, body);
+  return data;
+}
+
