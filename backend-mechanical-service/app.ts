@@ -15,6 +15,7 @@ class App {
     this.app.use('/mechanics', routes.mechanics);
     this.app.use('/services', routes.services);
     this.app.use('/managers', routes.managers);
+    this.app.use('/clientes', routes.clientes);
   }
 
   private config(): void {
