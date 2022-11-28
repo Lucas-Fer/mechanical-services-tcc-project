@@ -1,4 +1,4 @@
-enum CarroStatus {
+export enum CarroStatus {
   DISPONIVEL = 'DISPONIVEL',
   ALUGADO = 'ALUGADO',
 }
