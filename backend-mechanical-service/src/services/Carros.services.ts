@@ -59,4 +59,15 @@ export default class CarrosService {
 
     return { status: StatusCodes.CREATED, response: 'Update successfully!' };
   }
+
+
+  async deleteCar(idParams: string): Promise<Response> {
+    const car = await this.findCarById(Number(idParams) as number);
+
+    if (!car) return { status: StatusCodes.NOT_FOUND, error: 'Car not found' };
+
+    await this.carrosModel.destroy({ where: { carro_id: idParams } });
+
+    return { status: StatusCodes.CREATED, response: 'Delete successfully!' };
+  }
 }

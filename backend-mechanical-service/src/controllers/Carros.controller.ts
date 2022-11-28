@@ -24,4 +24,12 @@ export default class CarroController {
 
     return res.status(status).json(response ? response : error);
   }
+
+  public async delete(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    const { status, response, error } = await this.carroService.deleteCar(id as string);
+
+    return res.status(status).json(response ? response : error);
+  }
 }

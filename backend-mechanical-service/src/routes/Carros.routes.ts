@@ -11,5 +11,6 @@ const carroController = new CarroController(new CarrosService(CarrosModel));
 carroRoute.get('/', (req, res) => carroController.getAll(req, res));
 carroRoute.post('/cadastrar-carro', (req, res) => carroController.create(req, res));
 carroRoute.put('/atualizar-carro/:id', (req, res) => carroController.update(req, res));
+carroRoute.delete('/deletar-carro/:id', (req, res) => carroController.delete(req, res));
 
 export default carroRoute;
