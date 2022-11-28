@@ -6,4 +6,5 @@ export interface ICar {
   ano: number;
   marca: string;
   status: CarroStatus;
+  valor: number;
 } 

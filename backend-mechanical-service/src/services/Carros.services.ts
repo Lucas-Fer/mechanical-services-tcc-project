@@ -34,6 +34,7 @@ export default class CarrosService {
       carro_marca: params.marca,
       carro_ano: params.ano,
       carro_modelo: params.modelo,
+      carro_valor: params.valor,
       carro_status: CarroStatus.DISPONIVEL,
     }
 

@@ -32,6 +32,10 @@ CarrosModel.init({
     type: DataTypes.ENUM('DISPONIVEL', 'ALUGADO'),
     allowNull: false,
   },
+  carro_valor: {
+    type: DataTypes.DECIMAL,
+    allowNull: false,
+  },
 }, {
   modelName: 'carros',
   underscored: true,

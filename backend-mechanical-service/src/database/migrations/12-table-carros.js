@@ -21,6 +21,10 @@ module.exports = {
       },
       carro_status: {
         type: Sequelize.ENUM('DISPONIVEL', 'ALUGADO'),
+      },
+      carro_valor: {
+        allowNull: false,
+        type: Sequelize.DECIMAL(9, 2),
       }
     });
   },
