@@ -3,7 +3,7 @@ export default interface ICliente extends IClienteLogin {
   nome: string;
   email: string;
   senha: string;
-  carteiraMotorista: string;
+  carteiraMotorista?: string;
 }
 
 export interface IClienteLogin {
