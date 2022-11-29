@@ -1,20 +1,30 @@
-import CarrosModel from "../database/models/Carros.model";
 import StatusCodes from "../@types/StatusCodes.enum";
-import { ICar } from "../@types/Carros.interface";
-import { CarroStatus } from "../@types/CarroStatus.enum";
 import AlugueisModel from "../database/models/Alugueis.model";
+import { IAluguel } from "../@types/Aluguel.interface";
+import ClientesModel from "../database/models/Clientes.model";
+import CarrosModel from "../database/models/Carros.model";
 
 type Response = {
   status: number;
   error?: string;
-  response?: ICar[] | ICar | Object;
+  response?: IAluguel[] | IAluguel | Object;
 }
 
 export default class AlugueisService {
   constructor(private alugueisModel: typeof AlugueisModel) { }
 
   async getAllAlugueis(): Promise<Response> {
-    const allCars = await this.alugueisModel.findAll();
+
+    const allCars = await this.alugueisModel.findAll({
+      include: [{
+        model: ClientesModel,
+        required: true,
+      },
+      {
+        model: CarrosModel,
+        required: true,
+      }]
+    });
 
     return { status: StatusCodes.OK, response: allCars };
   }
@@ -22,25 +32,33 @@ export default class AlugueisService {
   async findAluguelById(id: number) {
     const user = await this.alugueisModel.findOne({
       where: {
-        carro_id: id,
+        aluguel_id: id,
       }
     });
 
     return user;
   }
 
-  async createNewCar(params: ICar): Promise<Response> {
+  async createNewAluguel(params: IAluguel): Promise<Response> {
 
     const newClienteObject = {
-      carro_marca: params.marca,
-      carro_ano: params.ano,
-      carro_modelo: params.modelo,
-      carro_status: CarroStatus.DISPONIVEL,
+      cliente_id: params.clienteId,
+      carro_id: params.carroId,
     }
 
     const result = await this.alugueisModel.create(newClienteObject);
 
     return { status: StatusCodes.CREATED, response: result };
+  }
+
+  async deleteAluguel(id: string): Promise<Response> {
+    const aluguel = await this.findAluguelById(Number(id) as number);
+
+    if (!aluguel) return { status: StatusCodes.NOT_FOUND, error: 'Aluguel not found' };
+
+    await this.alugueisModel.destroy({ where: { aluguel_id: id } });
+
+    return { status: StatusCodes.CREATED, response: 'Delete successfully!' };
   }
 
 }

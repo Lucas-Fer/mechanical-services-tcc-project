@@ -37,9 +37,11 @@ AlugueisModel.init({
     },
   },
 }, {
-  modelName: 'carros',
+  modelName: 'alugueis',
   underscored: true,
   sequelize: db,
   timestamps: false,
 });
 
+AlugueisModel.belongsTo(ClientesModel, { foreignKey: 'cliente_id' });
+AlugueisModel.belongsTo(CarrosModel, { foreignKey: 'carro_id' });
