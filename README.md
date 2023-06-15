@@ -2,7 +2,7 @@
 
 ## Resumo
 
-Projeto full stack em desenvolvimento para entrega do Trabalho de Conclusão de Curso da matéria de Sistemas de Informação na UNIRON, onde será um sistema para serviços mecânicos.
+Projeto full stack para entrega do Trabalho de Conclusão de Curso da matéria de Sistemas de Informação na UNIRON, onde será um sistema para serviços mecânicos.
 
 O sistema de serviços mecânicos atua como um gerenciador de serviços mecânicos para a oficina, além de ser uma alternativa para o cliente que deseja mais praticidade ao receber um serviço mecânico, caso não haja necessidade ou impossibilidade de se locomover para uma oficina.
 
